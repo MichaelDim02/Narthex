@@ -1,2 +1,2 @@
 # Narthex
-Modular personalized dictionary generator
+Modular password recovery suit
