@@ -1,5 +1,5 @@
 # Narthex
-PAX 2.0: Narthex (Greek: Νάρθηξ, νάρθηκας) is a modular & minimal password recovery suit for Unix and Unix-like operating system written in C. It contains autonomous programs for the creation of a personalised dictionaries that can be used for password recovery & offensive security assessment. The programs make use of Unix text streams for the collaboration with each other, according to the Unix philosophy. It is licensed under the GPL v3.0. Under development!
+Narthex (Greek: Νάρθηξ, νάρθηκας) is a modular & minimal dictionary generator for Unix and Unix-like operating system written in C and Shell. It contains autonomous Unix-style programs for the creation of a personalised dictionaries that can be used for password recovery & security assessment. The programs make use of Unix text streams for the collaboration with each other, according to the Unix philosophy. It is licensed under the GPL v3.0. Currently under development!
 
 # The tools
 + Nenchanc  -  A capitalization tool that appends the results to the bottom of the dictionary (stdout).
