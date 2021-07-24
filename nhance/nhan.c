@@ -14,7 +14,7 @@
  */
 
 
-#define VERSION "v1.1"
+#define VERSION "v1.2"
 #define BUFFER_SIZE 256
 
 FILE *
@@ -78,9 +78,9 @@ void help(char * exename)
 		"-f  Append full capitalization\n"
 		"-h  Print this panel & exit\n"
 		"-v  Print current version & exit\n\n"
-		"Usage:	cat [FILENAME] | %s [OPTIONS]\n",
+		"Usage:	cat [FILENAME] | %s [OPTIONS]\n"
 		"	%s [OPTIONS] [FILENAME]\n",
-		VERSION, exename);
+		VERSION, exename, exename);
 	exit(0);
 }
 
