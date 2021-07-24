@@ -113,7 +113,7 @@ main(int argc, char* argv[])
 		if (f)
 			f2= save_stdin(f);
 		else
-			fprintf(stderr, "nleet: %s\n", strerror(errno));
+			fprintf(stderr, "%s: %s\n", argv[0], strerror(errno));
 	} else {
 		f2 = save_stdin(stdin);
 	}
