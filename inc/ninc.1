@@ -1,12 +1,12 @@
-.\" Manpage for Ninc 
+.\" Manpage for ninc 
 
-.TH man 8 "15 Jul 2021" "1.0" "Ninc manual page"
+.TH man 8 "15 Jul 2021" "1.0" "ninc manual page"
 .SH NAME
-Ninc \- Narthex incrementor
+ninc \- Narthex incrementor
 .SH SYNOPSIS
 cat dictionary.txt | ninc [MIN] [MAX] [OPTIONS] > output.txt
 .SH DESCRIPTION
-Ninc reads from standard input and multiplies each line with the difference of max-min, and appends n to each line, where n is increased after every line from min to max inclusive. It prints to standard output.
+ninc reads from standard input and multiplies each line with the difference of max-min, and appends n to each line, where n is increased after every line from min to max inclusive. It prints to standard output.
 
 .SH OPTIONS
 -n	increment numerical lines
