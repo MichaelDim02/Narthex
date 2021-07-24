@@ -114,6 +114,7 @@ main(int argc, char* argv[])
 			f2= save_stdin(f);
 		else
 			fprintf(stderr, "%s: %s\n", argv[0], strerror(errno));
+			exit(1);
 	} else {
 		f2 = save_stdin(stdin);
 	}
