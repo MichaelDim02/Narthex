@@ -12,7 +12,7 @@
  *
  */
 
-#define VERSION "v0.1"
+#define VERSION "v1.0"
 #define BUFFER_SIZE 256
 
 static int
