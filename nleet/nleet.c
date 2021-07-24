@@ -82,14 +82,14 @@ void die(char * str)
 
 void help(char * exename)
 {
-	printf( "Nhance - Narthex leetfier%s\n"
+	printf( "Nhance - Narthex leetfier %s\n"
 		"By Michael C. Dim. <mk@mcdim.xyz>\n\n"
 
 		"-h  Print this panel & exit\n"
 		"-v  Print current version & exit\n\n"
-		"Usage:	cat [FILENAME] | %s\n",
+		"Usage:	cat [FILENAME] | %s\n"
 		"	%s [FILENAME]\n",
-		VERSION, exename);
+		VERSION, exename, exename);
 	exit(0);
 }
 
