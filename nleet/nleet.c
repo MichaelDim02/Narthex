@@ -39,7 +39,7 @@ print_only(FILE *f)
 }
 
 void
-enhance(FILE *f, int full_upper)
+leetify(FILE *f, int full_upper)
 {
 	char buffer[BUFFER_SIZE];
 	while(fgets(buffer, sizeof(buffer), f) != NULL) {
@@ -113,7 +113,7 @@ main(int argc, char* argv[])
 		if (f)
 			f2= save_stdin(f);
 		else
-			fprintf(stderr, "nenhan: %s\n", strerror(errno));
+			fprintf(stderr, "nleet: %s\n", strerror(errno));
 	} else {
 		f2 = save_stdin(stdin);
 	}
@@ -121,10 +121,10 @@ main(int argc, char* argv[])
 	rewind(f2);
 	print_only(f2);
 	rewind(f2);
-	enhance(f2,0);
+	leetify(f2,0);
 	if (full_upper == 1) {
 		rewind(f2);
-		enhance(f2,1);
+		leetify(f2,1);
 	}
 	fclose(f2);
 
