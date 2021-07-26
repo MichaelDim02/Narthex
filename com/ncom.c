@@ -5,14 +5,26 @@
 #include <ctype.h>
 
 /*
- *    Ncom - Narthex combinator (?)
+ *    ncom - Narthex combinator (?)
  *
  *  By Michael Constantine Dimopoulos
  *  https://mcdim.xyz	<mk@mcdim.xyz>
  *  License: GNU GPL v3
  *  
- *  Currently under development
- *  :)
+ *  ncom iterates over stdin and after
+ *  printing the dictionary as is, it will
+ *  print it again but will also append
+ *  every line of stdin to each iteration
+ *  creating, that way, a list of combi-
+ *  nations (pairs) of the lines.
+ *
+ *  By default, it will append when the
+ *  base is the same as the appended part
+ *  (i.e wordword), but that can be
+ *  switched off with the -b flag. It
+ *  can also use other separators, such
+ *  as a hyphen or a dot, all with their
+ *  own flags.
  *
  */
 
@@ -27,7 +39,6 @@ save_stdin(FILE *f)
 	while(fgets(buffer, sizeof(buffer), f) != NULL) {
 		fprintf(f2, "%s", buffer);
 	}
-	fclose(f);
 	return f2;
 }
 
@@ -42,7 +53,7 @@ isnumber(char * str)
 }
 
 static void
-com(FILE *f2, FILE *f3, int d, int u, int m, int n)
+com(FILE *f2, FILE *f3, int d, int u, int m, int n, int b)
 {
 	char buffer[BUFFER_SIZE];
 	char buffer2[BUFFER_SIZE];
@@ -51,10 +62,12 @@ com(FILE *f2, FILE *f3, int d, int u, int m, int n)
 		while (fgets(buffer2, sizeof(buffer2), f3) != NULL) {
 			strtok(buffer2, "\n");
 			if ((n == 0 && isnumber(buffer) == 0) || n == 1) {
-				printf("%s%s\n", buffer, buffer2);
-				if (d == 1) printf("%s%s%s\n", buffer, ".", buffer2);
-				if (m == 1) printf("%s%s%s\n", buffer, "-", buffer2);
-				if (u == 1) printf("%s%s%s\n", buffer, "-", buffer2);
+				if ((b == 1 && strcmp(buffer,buffer2) != 0) || b == 0) {
+					printf("%s%s\n", buffer, buffer2);
+					if (d == 1) printf("%s%s%s\n", buffer, ".", buffer2);
+					if (m == 1) printf("%s%s%s\n", buffer, "-", buffer2);
+					if (u == 1) printf("%s%s%s\n", buffer, "-", buffer2);
+				}
 			}
 		}
 		rewind(f3);
@@ -73,13 +86,14 @@ print_only(FILE *f)
 static void
 help(char * exename)
 {
-	printf( "Ninc - Narthex incrementor %s\n"
+	printf( "ncom - Narthex combinator %s\n"
 		"By Michael C. Dim. <mk@mcdim.xyz>\n\n"
 
 		"-d  Use dot separator\n"
 		"-u  Use underscore separator\n"
 		"-m  Use hyphen separator\n"
 		"-n  Exclude numerical bases\n"
+		"-b  Exclude base-appended\n"
 		"-h  Print this panel & exit\n"
 		"-v  Print current version & exit\n\n"
 
@@ -98,14 +112,14 @@ die(char * str)
 void
 main(int argc, char * argv[])
 {
-	int d=0, u=0, m=0, n=1;
+	int d=0, u=0, m=0, b=0, n=1;
 	char *cvalue = NULL;
 	int index;
 	int c;
 
 	opterr = 0;
 
-	while ( (c = getopt (argc, argv, "dumnvhh:")) != -1 )
+	while ( (c = getopt(argc, argv, "dumnvbhh:")) != -1 )
 		switch (c) {
 			case 'v':
 				die(VERSION);
@@ -123,10 +137,15 @@ main(int argc, char * argv[])
 			case 'n':
 				n=1;
 				break;
+			case 'b':
+				b=1;
+				break;
 			case '?':
-				fprintf (stderr, "Unknown option `\\x%x'.\n", optopt);
-				exit(EXIT_FAILURE);
+				/*fprintf (stderr, "Unknown option `%c`\n", c);
+				exit(EXIT_FAILURE);*/
+				break;
 		}
+
 	FILE * f2, * f3;
 	f2 = save_stdin(stdin);
 	rewind(f2);
@@ -136,7 +155,7 @@ main(int argc, char * argv[])
 	print_only(f2);
 	rewind(f2);
 	rewind(f3);
-	com(f2, f3, d, u, m, n);
+	com(f2, f3, d, u, m, n, b);
 
 	fclose(f2);
 

@@ -22,6 +22,6 @@ read sn; echo "$sn" >> /tmp/nrthxtmp;
 echo "Other keywords (separated by space): "
 read o; echo "$o"| tr " " "\n" >> /tmp/nrthxtmp;
 
-cat /tmp/nrthxtmp | sed '/^$/d' | tr -d ' ' | nhance | ninc 1 30 | nleet > "${n}".txt
+cat /tmp/nrthxtmp | sed '/^$/d' | tr -d ' ' | nhance | ncom -b | ninc 1 30 | nleet > "${n}".txt
 rm /tmp/nrthxtmp
 echo "[!] Exported at $n.txt"

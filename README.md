@@ -2,7 +2,7 @@
 Narthex (Greek: Νάρθηξ, νάρθηκας) is a modular & minimal dictionary generator for Unix and Unix-like operating system written in C and Shell. It contains autonomous Unix-style programs for the creation of personalised dictionaries that can be used for password recovery & security assessment. The programs make use of Unix text streams for the collaboration with each other, according to the Unix philosophy. It is licensed under the GPL v3.0. Currently under development!
 
 ## The tools
-+ nchanc  -  A capitalization tool that appends the results to the bottom of the dictionary (stdout).
++ nchance  -  A capitalization tool that appends the results to the bottom of the dictionary (stdout).
 + ninc      -  A incrementation tool that multiplies alphabetical lines and appends an n++ at the end of each line.
 + ncom      -  A combination tool that creates different combinations between the existing lines of the dictionary.
 + nrev      -  A reversing tool, that appends the reserved versions of the lines at the end of the dictionary.

@@ -6,7 +6,7 @@ ninc \- Narthex incrementor
 .SH SYNOPSIS
 cat dictionary.txt | ninc [MIN] [MAX] [OPTIONS] > output.txt
 .SH DESCRIPTION
-ninc reads from standard input and multiplies each line with the difference of max-min, and appends n to each line, where n is increased after every line from min to max inclusive. It prints to standard output.
+ninc reads from standard input and, after printing the dictionary as is, it reprints it but multiplies each line with the difference of max-min, and appends n to each line, where n is increased after every line from min to max inclusive. It prints to standard output.
 
 .SH OPTIONS
 -n	increment numerical lines

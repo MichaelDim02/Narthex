@@ -5,12 +5,23 @@
 #include <string.h>
 
 /*
- *     Nhance - Narthex leetifier
+ *     nleet - Narthex leetifier
  *    
  *  By Michael Constantine Dimopoulos
  *  https://mcdim.xyz   <mk@mcdim.xyz>
  *  License: GNU GPL v3
  *        
+ *  nleet will iterate over stdin or
+ *  a file and, after printing the
+ *  dictionary as is, it will reprint
+ *  it this time with some characters
+ *  replaced with their leet equiva-
+ *  lents. (hello -> h3ll0)
+ *
+ *  You are encouraged to edit &
+ *  recompile this file if you want
+ *  to edit the substitution rules.
+ *
  */
 
 
@@ -84,7 +95,7 @@ die(char * str)
 static void
 help(char * exename)
 {
-	printf( "Nhance - Narthex leetfier %s\n"
+	printf( "nleet - Narthex leetfier %s\n"
 		"By Michael C. Dim. <mk@mcdim.xyz>\n\n"
 
 		"-h  Print this panel & exit\n"

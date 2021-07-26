@@ -5,12 +5,20 @@
 #include <string.h>
 
 /*
- *     Nhance - Narthex enhancer
+ *     nhance - Narthex enhancer
  *    
  *  By Michael Constantine Dimopoulos
  *  https://mcdim.xyz   <mk@mcdim.xyz>
  *  License: GNU GPL v3
- *        
+ *  
+ *  nhance iterates over stdin and,
+ *  after printing the dictionary as
+ *  is, it will reprint it this time
+ *  with the first letter capitalized.
+ *  It can also append full capitali-
+ *  zations at the end of the dictio-
+ *  nary with the -f flag.
+ *
  */
 
 
@@ -76,7 +84,7 @@ die(char * str)
 static void
 help(char * exename)
 {
-	printf( "Nhance - Narthex enhancer %s\n"
+	printf( "nhance - Narthex enhancer %s\n"
 		"By Michael C. Dim. <mk@mcdim.xyz>\n\n"
 
 		"-f  Append full capitalization\n"

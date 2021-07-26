@@ -4,16 +4,39 @@
 #include <ctype.h>
 
 /*
- *    Ninc - Narthex incrementor
+ *    ninc - Narthex incrementor
  *
  *  By Michael Constantine Dimopoulos
  *  https://mcdim.xyz	<mk@mcdim.xyz>
  *  License: GNU GPL v3
  *
+ *  ninc will iterate over stdin and
+ *  after printing the dictionary as
+ *  is, it will reprint it but will
+ *  also multiply each line with the
+ *  difference of max-min, and will
+ *  append n to each line, where n is
+ *  increased after every line from
+ *  min to max inclusive. (I know, I
+ *  know. Just try to use it and it
+ *  will make more sense).
+ *
  */
 
 #define VERSION "v1.0"
 #define BUFFER_SIZE 256
+
+FILE *
+save_stdin(FILE *f)
+{
+	FILE *f2 = tmpfile();
+	char buffer[BUFFER_SIZE];
+	while(fgets(buffer, sizeof(buffer), f) != NULL)  {
+		fprintf(f2, "%s", buffer);
+	}
+	fclose(f);
+	return f2;
+}
 
 static int
 isnumber(char * str)
@@ -31,7 +54,6 @@ ninc(FILE *f, int min, int max, int numerical)
 	char buffer[BUFFER_SIZE];
 	while (fgets(buffer, sizeof(buffer), f) != NULL) {
 		strtok(buffer, "\n");
-		puts(buffer);
 		for (int i = min; i <= max; i++) {
 			if ((numerical == 0 && isnumber(buffer) == 0) || numerical == 1) {
 				printf("%s%d\n", buffer, i);
@@ -40,10 +62,19 @@ ninc(FILE *f, int min, int max, int numerical)
 	}
 }
 
+void
+print_only(FILE *f)
+{
+	char buffer[BUFFER_SIZE];
+	while(fgets(buffer, sizeof(buffer), f) != NULL) {
+		printf("%s",buffer);
+	}
+}
+
 static void
 help(char * exename)
 {
-	printf( "Ninc - Narthex incrementor %s\n"
+	printf( "ninc - Narthex incrementor %s\n"
 		"By Michael C. Dim. <mk@mcdim.xyz>\n\n"
 
 		"-n  Increment numerical lines as well\n"
@@ -88,7 +119,13 @@ main(int argc, char * argv[])
 	}
 
 	if (min <= max) {
-		ninc(stdin, min, max, numerical);
+		FILE * f;
+		f = save_stdin(stdin);
+		rewind(f);
+		print_only(f);
+		rewind(f);
+		ninc(f, min, max, numerical);
 	}
+
 	exit(EXIT_SUCCESS);
 }
