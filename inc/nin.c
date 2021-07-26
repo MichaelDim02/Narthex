@@ -52,13 +52,14 @@ help(char * exename)
 
 		"Usage:	cat [FILENAME] | %s [MIN] [MAX] [OPTIONS]\n",
 		VERSION, exename);
-	exit(0);
+	exit(EXIT_SUCCESS);
 }
 
 void
 die(char * str)
 {
 	printf("%d\n", str);
+	exit(EXIT_SUCCESS);
 }
 
 void
@@ -83,11 +84,11 @@ main(int argc, char * argv[])
 			numerical = 1;
 	} else {
 		fprintf(stderr, "%s: wrong number of arguments\n", argv[0]);
-		exit(0);
+		exit(EXIT_FAILURE);
 	}
 
 	if (min <= max) {
 		ninc(stdin, min, max, numerical);
 	}
-	exit(0);
+	exit(EXIT_SUCCESS);
 }

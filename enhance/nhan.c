@@ -67,7 +67,7 @@ enhance(FILE *f, int full_upper)
 void die(char * str)
 {
 	printf("%s\n", str);
-	exit(0);
+	exit(EXIT_SUCCESS);
 }
 
 void help(char * exename)
@@ -81,7 +81,7 @@ void help(char * exename)
 		"Usage:	cat [FILENAME] | %s [OPTIONS]\n"
 		"	%s [OPTIONS] [FILENAME]\n",
 		VERSION, exename, exename);
-	exit(0);
+	exit(EXIT_SUCCESS);
 }
 
 void
@@ -107,7 +107,7 @@ main(int argc, char* argv[])
 			f2 = save_stdin(f);
 		} else {
 			fprintf(stderr, "%s: %s\n", argv[0], strerror(errno));
-			exit(1);
+			exit(EXIT_FAILURE);
 		}
 	} else {
 		f2 = save_stdin(stdin);
@@ -123,5 +123,5 @@ main(int argc, char* argv[])
 	}
 	fclose(f2);
 
-	exit(0);
+	exit(EXIT_SUCCESS);
 }

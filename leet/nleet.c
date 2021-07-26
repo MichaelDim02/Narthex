@@ -74,13 +74,15 @@ leetify(FILE *f, int full_upper)
 	}
 }
 
-void die(char * str)
+static void
+die(char * str)
 {
 	printf("%s\n", str);
-	exit(0);
+	exit(EXIT_SUCCESS);
 }
 
-void help(char * exename)
+static void
+help(char * exename)
 {
 	printf( "Nhance - Narthex leetfier %s\n"
 		"By Michael C. Dim. <mk@mcdim.xyz>\n\n"
@@ -90,7 +92,7 @@ void help(char * exename)
 		"Usage:	cat [FILENAME] | %s\n"
 		"	%s [FILENAME]\n",
 		VERSION, exename, exename);
-	exit(0);
+	exit(EXIT_SUCCESS);
 }
 
 void
@@ -114,7 +116,7 @@ main(int argc, char* argv[])
 			f2= save_stdin(f);
 		else
 			fprintf(stderr, "%s: %s\n", argv[0], strerror(errno));
-			exit(1);
+			exit(EXIT_FAILURE);
 	} else {
 		f2 = save_stdin(stdin);
 	}
@@ -127,7 +129,8 @@ main(int argc, char* argv[])
 		rewind(f2);
 		leetify(f2,1);
 	}
+
 	fclose(f2);
 
-	exit(0);
+	exit(EXIT_SUCCESS);
 }
