@@ -88,7 +88,7 @@ help(char * exename)
 	exit(EXIT_SUCCESS);
 }
 
-void
+static void
 die(char * str)
 {
 	printf("%s\n", str);

@@ -29,7 +29,7 @@ save_stdin(FILE *f)
 	return f2;
 }
 
-void
+static void
 print_only(FILE *f)
 {
 	char buffer[BUFFER_SIZE];
@@ -38,7 +38,7 @@ print_only(FILE *f)
 	}
 }
 
-void
+static void
 leetify(FILE *f, int full_upper)
 {
 	char buffer[BUFFER_SIZE];

@@ -55,7 +55,7 @@ help(char * exename)
 	exit(EXIT_SUCCESS);
 }
 
-void
+static void
 die(char * str)
 {
 	printf("%d\n", str);

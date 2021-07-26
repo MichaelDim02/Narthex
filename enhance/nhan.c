@@ -29,7 +29,9 @@ save_stdin(FILE *f)
 	return f2;
 }
 
-void cap(char string[]){  
+void
+cap(char string[])
+{  
 	int i;
 	int x = strlen(string);
 	for (i=0; i<x-1; i++){
@@ -48,7 +50,7 @@ print_only(FILE *f)
 	}
 }
 
-void
+static void
 enhance(FILE *f, int full_upper)
 {
 	char buffer[BUFFER_SIZE];
@@ -64,13 +66,15 @@ enhance(FILE *f, int full_upper)
 	}
 }
 
-void die(char * str)
+static void
+die(char * str)
 {
 	printf("%s\n", str);
 	exit(EXIT_SUCCESS);
 }
 
-void help(char * exename)
+static void
+help(char * exename)
 {
 	printf( "Nhance - Narthex enhancer %s\n"
 		"By Michael C. Dim. <mk@mcdim.xyz>\n\n"
