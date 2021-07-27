@@ -57,16 +57,17 @@ com(FILE *f2, FILE *f3, int d, int u, int m, int n, int b)
 {
 	char buffer[BUFFER_SIZE];
 	char buffer2[BUFFER_SIZE];
+
 	while (fgets(buffer, sizeof(buffer), f2) != NULL) {
 		strtok(buffer, "\n");
 		while (fgets(buffer2, sizeof(buffer2), f3) != NULL) {
 			strtok(buffer2, "\n");
 			if ((n == 0 && isnumber(buffer) == 0) || n == 1) {
 				if ((b == 1 && strcmp(buffer,buffer2) != 0) || b == 0) {
-					printf("%s%s\n", buffer, buffer2);
-					if (d == 1) printf("%s%s%s\n", buffer, ".", buffer2);
-					if (m == 1) printf("%s%s%s\n", buffer, "-", buffer2);
-					if (u == 1) printf("%s%s%s\n", buffer, "-", buffer2);
+					if (d == 1)      printf("%s.%s\n", buffer, buffer2);
+					else if (m == 1) printf("%s-%s\n", buffer, buffer2);
+					else if (u == 1) printf("%s_%s\n", buffer, buffer2);
+					else             printf("%s%s\n",  buffer, buffer2);
 				}
 			}
 		}
@@ -119,7 +120,7 @@ main(int argc, char * argv[])
 
 	opterr = 0;
 
-	while ( (c = getopt(argc, argv, "dumnvbhh:")) != -1 )
+	while ( (c = getopt(argc, argv, "duuumnvbhh:")) != -1 )
 		switch (c) {
 			case 'v':
 				die(VERSION);
@@ -129,7 +130,7 @@ main(int argc, char * argv[])
 				d=1;
 				break;
 			case 'u':
-				u=0;
+				u=1;
 				break;
 			case 'm':
 				m=1;
@@ -145,6 +146,8 @@ main(int argc, char * argv[])
 				exit(EXIT_FAILURE);*/
 				break;
 		}
+	/* for troubleshooting: */
+	/* printf("d:%i\nm:%i\nu:%i\n", d, m, u); */
 
 	FILE * f2, * f3;
 	f2 = save_stdin(stdin);
@@ -155,9 +158,32 @@ main(int argc, char * argv[])
 	print_only(f2);
 	rewind(f2);
 	rewind(f3);
-	com(f2, f3, d, u, m, n, b);
+
+	/* Now this will call com(); for every
+	 * possible set option.
+	 *
+	 *          d  u  m      */
+
+	com(f2, f3, 0, 0, 0, n, b);
+
+	if (d == 1) {
+		rewind(f2);
+		rewind(f3);
+		com(f2, f3, 1, 0, 0, n, b);
+	}
+	if (u == 1) {
+		rewind(f2);
+		rewind(f3);
+		com(f2, f3, 0, 1, 0, n, b);
+	}
+	if (m == 1) {
+		rewind(f2);
+		rewind(f3);
+		com(f2, f3, 0, 0, 1, n, b);
+	}
 
 	fclose(f2);
+	fclose(f3);
 
 	exit(EXIT_SUCCESS);
 }
