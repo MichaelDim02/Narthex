@@ -12,7 +12,7 @@ Narthex (Greek: Νάρθηξ, νάρθηκας) is a modular & minimal dictionar
 ## Install
 In order to install, execute the following commands:
 ```
-$ git clone git@git.mcdim.xyz:/var/www/git/Narthex.git && cd Narthex
+$ git clone https://github.com/MichaelDim02/Narthex.git && cd Narthex
 $ sudo make install
 ```
 
