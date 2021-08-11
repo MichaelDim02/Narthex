@@ -1,16 +1,10 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include <unistd.h>
-#include <ctype.h>
-
 /*
  *    ncom - Narthex combinator (?)
  *
  *  By Michael Constantine Dimopoulos
  *  https://mcdim.xyz	<mk@mcdim.xyz>
  *  License: GNU GPL v3
- *  
+ *
  *  ncom iterates over stdin and after
  *  printing the dictionary as is, it will
  *  print it again but will also append
@@ -28,8 +22,40 @@
  *
  */
 
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
+#include <ctype.h>
+
 #define VERSION "v1.0"
 #define BUFFER_SIZE 256
+
+static void
+help(char * exename)
+{
+	printf( "ncom - Narthex combinator %s\n"
+		"By Michael C. Dim. <mk@mcdim.xyz>\n\n"
+
+		"-d  Use dot separator\n"
+		"-u  Use underscore separator\n"
+		"-m  Use hyphen separator\n"
+		"-n  Exclude numerical bases\n"
+		"-b  Exclude base-appended\n"
+		"-h  Print this panel & exit\n"
+		"-v  Print current version & exit\n\n"
+
+		"Usage:	cat [FILENAME] | %s [OPTIONS]\n",
+		VERSION, exename);
+	exit(EXIT_SUCCESS);
+}
+
+static void
+die(char * str)
+{
+	printf("%s\n", str);
+	exit(EXIT_SUCCESS);
+}
 
 static FILE *
 save_stdin(FILE *f)
@@ -82,32 +108,6 @@ print_only(FILE *f)
 	while(fgets(buffer, sizeof(buffer), f) != NULL) {
 		printf("%s", buffer);
 	}
-}
-
-static void
-help(char * exename)
-{
-	printf( "ncom - Narthex combinator %s\n"
-		"By Michael C. Dim. <mk@mcdim.xyz>\n\n"
-
-		"-d  Use dot separator\n"
-		"-u  Use underscore separator\n"
-		"-m  Use hyphen separator\n"
-		"-n  Exclude numerical bases\n"
-		"-b  Exclude base-appended\n"
-		"-h  Print this panel & exit\n"
-		"-v  Print current version & exit\n\n"
-
-		"Usage:	cat [FILENAME] | %s [OPTIONS]\n",
-		VERSION, exename);
-	exit(EXIT_SUCCESS);
-}
-
-static void
-die(char * str)
-{
-	printf("%s\n", str);
-	exit(EXIT_SUCCESS);
 }
 
 void
