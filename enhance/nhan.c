@@ -1,9 +1,3 @@
-#include <stdlib.h>
-#include <ctype.h>
-#include <stdio.h>
-#include <errno.h>
-#include <string.h>
-
 /*
  *     nhance - Narthex enhancer
  *    
@@ -21,9 +15,37 @@
  *
  */
 
+#include <stdlib.h>
+#include <ctype.h>
+#include <stdio.h>
+#include <errno.h>
+#include <string.h>
 
 #define VERSION "v1.2"
 #define BUFFER_SIZE 256
+
+
+static void
+help(char * exename)
+{
+	printf( "nhance - Narthex enhancer %s\n"
+		"By Michael C. Dim. <mk@mcdim.xyz>\n\n"
+
+		"-f  Append full capitalization\n"
+		"-h  Print this panel & exit\n"
+		"-v  Print current version & exit\n\n"
+		"Usage:	cat [FILENAME] | %s [OPTIONS]\n"
+		"	%s [OPTIONS] [FILENAME]\n",
+		VERSION, exename, exename);
+	exit(EXIT_SUCCESS);
+}
+
+static void
+die(char * str)
+{
+	printf("%s\n", str);
+	exit(EXIT_SUCCESS);
+}
 
 FILE *
 save_stdin(FILE *f)
@@ -72,28 +94,6 @@ enhance(FILE *f, int full_upper)
 		}
 
 	}
-}
-
-static void
-die(char * str)
-{
-	printf("%s\n", str);
-	exit(EXIT_SUCCESS);
-}
-
-static void
-help(char * exename)
-{
-	printf( "nhance - Narthex enhancer %s\n"
-		"By Michael C. Dim. <mk@mcdim.xyz>\n\n"
-
-		"-f  Append full capitalization\n"
-		"-h  Print this panel & exit\n"
-		"-v  Print current version & exit\n\n"
-		"Usage:	cat [FILENAME] | %s [OPTIONS]\n"
-		"	%s [OPTIONS] [FILENAME]\n",
-		VERSION, exename, exename);
-	exit(EXIT_SUCCESS);
 }
 
 void
