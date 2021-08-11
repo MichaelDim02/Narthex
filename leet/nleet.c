@@ -1,9 +1,3 @@
-#include <stdlib.h>
-#include <ctype.h>
-#include <stdio.h>
-#include <errno.h>
-#include <string.h>
-
 /*
  *     nleet - Narthex leetifier
  *    
@@ -24,9 +18,37 @@
  *
  */
 
+#include <stdlib.h>
+#include <ctype.h>
+#include <stdio.h>
+#include <errno.h>
+#include <string.h>
 
 #define VERSION "v1.2"
 #define BUFFER_SIZE 256
+
+
+
+static void
+help(char * exename)
+{
+	printf( "nleet - Narthex leetfier %s\n"
+		"By Michael C. Dim. <mk@mcdim.xyz>\n\n"
+
+		"-h  Print this panel & exit\n"
+		"-v  Print current version & exit\n\n"
+		"Usage:	cat [FILENAME] | %s\n"
+		"	%s [FILENAME]\n",
+		VERSION, exename, exename);
+	exit(EXIT_SUCCESS);
+}
+
+static void
+die(char * str)
+{
+	printf("%s\n", str);
+	exit(EXIT_SUCCESS);
+}
 
 FILE *
 save_stdin(FILE *f)
@@ -83,27 +105,6 @@ leetify(FILE *f, int full_upper)
 		}
 		if (npflag == 1) printf("%s",buffer);
 	}
-}
-
-static void
-die(char * str)
-{
-	printf("%s\n", str);
-	exit(EXIT_SUCCESS);
-}
-
-static void
-help(char * exename)
-{
-	printf( "nleet - Narthex leetfier %s\n"
-		"By Michael C. Dim. <mk@mcdim.xyz>\n\n"
-
-		"-h  Print this panel & exit\n"
-		"-v  Print current version & exit\n\n"
-		"Usage:	cat [FILENAME] | %s\n"
-		"	%s [FILENAME]\n",
-		VERSION, exename, exename);
-	exit(EXIT_SUCCESS);
 }
 
 void
