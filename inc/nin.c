@@ -1,8 +1,3 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include <ctype.h>
-
 /*
  *    ninc - Narthex incrementor
  *
@@ -23,8 +18,35 @@
  *
  */
 
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
 #define VERSION "v1.0"
 #define BUFFER_SIZE 256
+
+static void
+help(char * exename)
+{
+	printf( "ninc - Narthex incrementor %s\n"
+		"By Michael C. Dim. <mk@mcdim.xyz>\n\n"
+
+		"-n  Increment numerical lines as well\n"
+		"-h  Print this panel & exit\n"
+		"-v  Print current version & exit\n\n"
+
+		"Usage:	cat [FILENAME] | %s [MIN] [MAX] [OPTIONS]\n",
+		VERSION, exename);
+	exit(EXIT_SUCCESS);
+}
+
+static void
+die(char * str)
+{
+	printf("%d\n", str);
+	exit(EXIT_SUCCESS);
+}
 
 FILE *
 save_stdin(FILE *f)
@@ -48,6 +70,12 @@ isnumber(char * str)
 	return 0;
 }
 
+static int
+check_num(int numerical, char * buffer)
+{
+	return ((numerical == 0 && isnumber(buffer) == 0) || numerical == 1);
+}
+
 static void
 ninc(FILE *f, int min, int max, int numerical)
 {
@@ -55,42 +83,20 @@ ninc(FILE *f, int min, int max, int numerical)
 	while (fgets(buffer, sizeof(buffer), f) != NULL) {
 		strtok(buffer, "\n");
 		for (int i = min; i <= max; i++) {
-			if ((numerical == 0 && isnumber(buffer) == 0) || numerical == 1) {
+			if (check_num(numerical, buffer) == 1) {
 				printf("%s%d\n", buffer, i);
 			}
 		}
 	}
 }
 
-void
+static void
 print_only(FILE *f)
 {
 	char buffer[BUFFER_SIZE];
 	while(fgets(buffer, sizeof(buffer), f) != NULL) {
 		printf("%s",buffer);
 	}
-}
-
-static void
-help(char * exename)
-{
-	printf( "ninc - Narthex incrementor %s\n"
-		"By Michael C. Dim. <mk@mcdim.xyz>\n\n"
-
-		"-n  Increment numerical lines as well\n"
-		"-h  Print this panel & exit\n"
-		"-v  Print current version & exit\n\n"
-
-		"Usage:	cat [FILENAME] | %s [MIN] [MAX] [OPTIONS]\n",
-		VERSION, exename);
-	exit(EXIT_SUCCESS);
-}
-
-static void
-die(char * str)
-{
-	printf("%d\n", str);
-	exit(EXIT_SUCCESS);
 }
 
 void
