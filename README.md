@@ -1,12 +1,17 @@
 # Narthex
 Narthex (Greek: Νάρθηξ, νάρθηκας) is a modular & minimal dictionary generator for Unix and Unix-like operating system written in C and Shell. It contains autonomous Unix-style programs for the creation of personalised dictionaries that can be used for password recovery & security assessment. The programs make use of Unix text streams for the collaboration with each other, according to the Unix philosophy. It is licensed under the GPL v3.0. Currently under development!
 
+*I made a video to explain the usage of Narthex to non-Unix people:*
+https://www.youtube.com/watch?v=U0UmCeLJSkk&t=938s
+(the timestamp is intentional)
+
 ## The tools
-+ nchance  -  A capitalization tool that appends the results to the bottom of the dictionary (stdout).
++ nchance   -  A capitalization tool that appends the results to the bottom of the dictionary.
 + ninc      -  A incrementation tool that multiplies alphabetical lines and appends an n++ at the end of each line.
 + ncom      -  A combination tool that creates different combinations between the existing lines of the dictionary.
 + nrev      -  A reversing tool, that appends the reserved versions of the lines at the end of the dictionary.
-+ nleet     -  A leetifier. Replaces characters with Leet equivalents, such as @ instead of a, or 3 instead of e. Also appends
++ nleet     -  A leetifier. Replaces characters with Leet equivalents, such as @ instead of a, or 3 instead of e.
++ nclean    -  A tool for removing passwords that don't meet your criteria (too short, no special characters etc.)
 + nwiz      -  A wizard that asks for the infromation and combines the tools together to create a final dictionary.
 
 ## Install
