@@ -16,7 +16,7 @@
 \033[0;31m  |X  Kl  \033[0mI\033[0;37m   \.     ,/   \033[0m
 \033[0;31m_/ C  A \_\033[0m!\033[0;37m  _//^---^\\\\_\033[0m    -Row \n
 
-NARTHEX ELDER $version
+NARTHEX ELDER v1.0
 Wizard program for Narthex
 By Michael Constantine Dimopoulos
 https://mcdim.xyz  <mk@mcdim.xyz>

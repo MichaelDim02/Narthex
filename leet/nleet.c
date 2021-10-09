@@ -28,7 +28,6 @@
 #define BUFFER_SIZE 256
 
 
-
 static void
 help(char * exename)
 {
