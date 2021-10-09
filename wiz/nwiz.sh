@@ -17,7 +17,9 @@ echo -n "Phone number: "
 read phn; echo "$phn" >> /tmp/nrthxtmp;
 echo -n "Pet name: "
 read pn; echo "$pn" >> /tmp/nrthxtmp;
-echo -n "Spouce name: "
+echo -n "Current City: "
+read pn; echo "$cy" >> /tmp/nrthxtmp;
+echo -n "Spouse name: "
 read sn; echo "$sn" >> /tmp/nrthxtmp;
 echo "Other keywords (separated by space): "
 read o; echo "$o"| tr " " "\n" >> /tmp/nrthxtmp;
