@@ -2,6 +2,7 @@
 # GNU GPL v3.0
 
 CC=gcc
+MD=/usr/share/man/man1/
 
 #all: inc/nin.c enhance/nhan.c leet/nleet.c com/ncom.c rev/nrev.sh
 #	$(CC) enhance/nhan.c -o nhance
@@ -22,18 +23,18 @@ install: inc/nin.c enhance/nhan.c leet/nleet.c com/ncom.c rev/nrev.sh wiz/nwiz.s
 	sudo cp wiz/nwiz.sh /bin/nwiz
 	mkdir -p /var/lib/narthex/
 	cp wiz/elder.txt /var/lib/narthex/
-	sudo cp enhance/nhance.1 /usr/share/man/man1
-	sudo cp inc/ninc.1 /usr/share/man/man1
-	sudo cp leet/nleet.1 /usr/share/man/man1
-	sudo cp com/ncom.1 /usr/share/man/man1
-	sudo cp rev/nrev.1 /usr/share/man/man1
+	sudo cp enhance/nhance.1 $(MD)
+	sudo cp inc/ninc.1 $(MD)
+	sudo cp leet/nleet.1 $(MD)
+	sudo cp com/ncom.1 $(MD)
+	sudo cp rev/nrev.1 $(MD)
 	sudo mandb
 
-uninstall: /bin/ninc /bin/nhance /bin/nrev /bin/nleet /bin/ncom /bin/nwiz /usr/share/man/man1/ninc.1 /usr/share/man/man1/nhance.1 /usr/share/man/man1/nrev.1 /usr/share/man/man1/nleet.1 /usr/share/man/man1/ncom.1
-	rm /bin/ninc /usr/share/man/man1/ninc.1
-	rm /bin/nhance /usr/share/man/man1/nhance.1
-	rm /bin/nleet /usr/share/man/man1/nleet.1
-	rm /bin/nrev /usr/share/man/man1/nrev.1
-	rm /bin/ncom /usr/share/man/man1/ncom.1
+uninstall: /bin/ninc /bin/nhance /bin/nrev /bin/nleet /bin/ncom /bin/nwiz $(MD)ninc.1 $(MD)nhance.1 $(MD)nrev.1 $(MD)nleet.1 $(MD)ncom.1
+	rm /bin/ninc $(MD)ninc.1
+	rm /bin/nhance $(MD)nhance.1
+	rm /bin/nleet $(MD)nleet.1
+	rm /bin/nrev $(MD)nrev.1
+	rm /bin/ncom $(MD)ncom.1
 	rm /bin/nwiz
 	rm -r /var/lib/narthex/
