@@ -23,7 +23,7 @@
 #include <string.h>
 #include <ctype.h>
 
-#define VERSION "v1.0"
+#define VERSION "v1.1"
 #define BUFFER_SIZE 256
 
 static void
@@ -44,7 +44,7 @@ help(char * exename)
 static void
 die(char * str)
 {
-	printf("%d\n", str);
+	printf("%s\n", str);
 	exit(EXIT_SUCCESS);
 }
 
@@ -110,7 +110,7 @@ main(int argc, char * argv[])
 		if (strcmp(argv[1], "-h") == 0)
 			help(argv[0]);
 		else if (strcmp(argv[1], "-v") ==0)
-			printf("%s\n", VERSION);
+			die(VERSION);
 	} else if (argc == 3) {
 		min = atoi(argv[1]);
 		max = atoi(argv[2]);
