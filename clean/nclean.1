@@ -1,0 +1,40 @@
+.\" Manpage for ncom
+
+.TH man 8 "10 Oct 2021" "1.0" "nclean manual page"
+.SH NAME
+nclean \- Narthex cleaner
+.SH SYNOPSIS
+cat dictionary.txt | nclean [OPTIONS] > output.txt
+.SH DESCRIPTION
+nclean iterates over stdin and prints all lines that meet your specified criteria of length and charset.
+
+.SH OPTIONS
+-c	print lines that have capitalised letters
+
+-n	print lines that have numbers
+
+-s	print lines that have special characters
+
+-l	print lines of length greater or equal to that specified
+
+-v	print version and exit
+
+-h	print help panel and exit
+
+.SH EXAMPLES
+
+This will output only the lines of length >= 6 that include capital letters:
+
+cat dictionary.txt | nclean -l 6 -c > output.txt
+
+This will output only the lines that have special characters:
+
+cat dictionary.txt | nclean -s > output.txt
+
+.SH AUTHOR
+Michael Constantine Dimopoulos <mk@mcdim.xyz>
+
+https://mcdim.xyz
+
+.SH LICENSE
+GNU General Public License 3.0 (GPL-3.0)
