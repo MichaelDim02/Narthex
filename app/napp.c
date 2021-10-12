@@ -20,7 +20,7 @@
 #include <unistd.h>
 #include <ctype.h>
 
-#define VERSION "v1.0"
+#define VERSION "v1.1"
 #define BUFFER_SIZE 256
 
 static void
@@ -35,7 +35,7 @@ static void
 help(char * exename)
 {
 	printf( "napp - Narthex appender %s\n"
-		"By Michael C. Dim. <mk@mcdim.xyz>\n\n"
+		"By Michael Constantine Dimopoulos <mk@mcdim.xyz>\n\n"
 
 		"-c  specify charset\n"
 		"-w  specify dictionary of words\n"

@@ -21,7 +21,7 @@
 #include <ctype.h>
 #include <unistd.h>
 
-#define VERSION "v1.0"
+#define VERSION "v1.1"
 #define BUFFER_SIZE 256
 
 static void
@@ -36,14 +36,14 @@ static void
 help(char *exename)
 {
 	printf( "nclean - Narthex cleaner %s\n"
-		"By Michael C. Dim. <mk@mcdim.xyz>\n\n"
+		"By Michael Constantine Dimopoulos <mk@mcdim.xyz>\n\n"
 
-		"-c  Must have capital letters\n"
-		"-n  Must have numbers\n"
-		"-s  Must have symbols\n"
-		"-l  Must have min length specified\n"
-		"-h  Print this panel & exit\n"
-		"-v  Print current version & exit\n\n"
+		"-c  must have capital letters\n"
+		"-n  must have numbers\n"
+		"-s  must have symbols\n"
+		"-l  must have min length specified\n"
+		"-h  print this panel & exit\n"
+		"-v  print current version & exit\n\n"
 
 		"Usage:	cat [FILENAME] | %s [-c] [-n] [-s] [-l] 10\n",
 		VERSION, exename);

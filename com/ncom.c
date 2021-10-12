@@ -28,24 +28,24 @@
 #include <unistd.h>
 #include <ctype.h>
 
-#define VERSION "v1.0"
+#define VERSION "v1.1"
 #define BUFFER_SIZE 256
 
 static void
 help(char * exename)
 {
 	printf( "ncom - Narthex combinator %s\n"
-		"By Michael C. Dim. <mk@mcdim.xyz>\n\n"
+		"By Michael Constantine Dimopoulos <mk@mcdim.xyz>\n\n"
 
-		"-d  Use dot separator\n"
-		"-u  Use underscore separator\n"
-		"-m  Use hyphen separator\n"
-		"-n  Exclude numerical bases\n"
-		"-b  Exclude base-appended\n"
-		"-h  Print this panel & exit\n"
-		"-v  Print current version & exit\n\n"
+		"-d  use dot separator\n"
+		"-u  use underscore separator\n"
+		"-m  use hyphen separator\n"
+		"-n  exclude numerical bases\n"
+		"-b  exclude base-appended\n"
+		"-h  print this panel & exit\n"
+		"-v  print current version & exit\n\n"
 
-		"Usage:	cat [FILENAME] | %s [OPTIONS]\n",
+		"Usage:	cat [FILENAME] | %s [-d] [-u] [-m] [-n] [-b]\n",
 		VERSION, exename);
 	exit(EXIT_SUCCESS);
 }

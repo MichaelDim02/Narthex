@@ -12,6 +12,7 @@ https://www.youtube.com/watch?v=U0UmCeLJSkk&t=938s
 + nrev      -  A reversing tool, that appends the reserved versions of the lines at the end of the dictionary.
 + nleet     -  A leetifier. Replaces characters with Leet equivalents, such as @ instead of a, or 3 instead of e.
 + nclean    -  A tool for removing passwords that don't meet your criteria (too short, no special characters etc.)
++ napp      -  A tool that appends characters or words before or after the lines of the dictionary.
 + nwiz      -  A wizard that asks for the infromation and combines the tools together to create a final dictionary.
 
 ## Install

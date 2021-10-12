@@ -9,15 +9,17 @@
 #  ary, it will reprint it again but
 #  with each line reversed.
 
-version="1.0"
+version="1.1"
 
 if   [ "$1" = "-v" ]; then echo version; exit;
 elif [ "$1" = "-h" ];
 then
 	printf  "nrev - Narthex reverser ${version}  \n";
-	printf	"By Michael C. Dim.  <mk@mcdim.xyz>\n\n";
-	printf	'%s\n' "-h  Print this panel & exit";
-	printf	'%s\n\n' "-v  Print current version & exit";
+	printf	"By Michael Constantine Dimopoulos <mk@mcdim.xyz>\n\n";
+
+	printf	'%s\n' "-h  print this panel & exit";
+	printf	'%s\n\n' "-v  print current version & exit";
+
 	printf	"Usage:	nrev [FILENAME]\n";
 	printf  "	cat [FILENAME] | nrev\n";
 	exit;

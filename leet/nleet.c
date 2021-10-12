@@ -24,7 +24,7 @@
 #include <errno.h>
 #include <string.h>
 
-#define VERSION "v1.2"
+#define VERSION "v1.3"
 #define BUFFER_SIZE 256
 
 
@@ -32,10 +32,10 @@ static void
 help(char * exename)
 {
 	printf( "nleet - Narthex leetfier %s\n"
-		"By Michael C. Dim. <mk@mcdim.xyz>\n\n"
+		"By Michael Constantine Dimopoulos <mk@mcdim.xyz>\n\n"
 
-		"-h  Print this panel & exit\n"
-		"-v  Print current version & exit\n\n"
+		"-h  print this panel & exit\n"
+		"-v  print current version & exit\n\n"
 		"Usage:	cat [FILENAME] | %s\n"
 		"	%s [FILENAME]\n",
 		VERSION, exename, exename);

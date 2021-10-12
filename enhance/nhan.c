@@ -21,7 +21,7 @@
 #include <errno.h>
 #include <string.h>
 
-#define VERSION "v1.2"
+#define VERSION "v1.3"
 #define BUFFER_SIZE 256
 
 
@@ -29,13 +29,14 @@ static void
 help(char * exename)
 {
 	printf( "nhance - Narthex enhancer %s\n"
-		"By Michael C. Dim. <mk@mcdim.xyz>\n\n"
+		"By Michael Constantine Dimopoulos <mk@mcdim.xyz>\n\n"
 
-		"-f  Append full capitalization\n"
-		"-h  Print this panel & exit\n"
-		"-v  Print current version & exit\n\n"
-		"Usage:	cat [FILENAME] | %s [OPTIONS]\n"
-		"	%s [OPTIONS] [FILENAME]\n",
+		"-f  append full capitalization\n"
+		"-h  print this panel & exit\n"
+		"-v  print current version & exit\n\n"
+
+		"Usage:	cat [FILENAME] | %s [-f]\n"
+		"	%s [-f] [FILENAME]\n",
 		VERSION, exename, exename);
 	exit(EXIT_SUCCESS);
 }

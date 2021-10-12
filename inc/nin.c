@@ -23,20 +23,20 @@
 #include <string.h>
 #include <ctype.h>
 
-#define VERSION "v1.1"
+#define VERSION "v1.2"
 #define BUFFER_SIZE 256
 
 static void
 help(char * exename)
 {
 	printf( "ninc - Narthex incrementor %s\n"
-		"By Michael C. Dim. <mk@mcdim.xyz>\n\n"
+		"By Michael Constantine Dimopoulos <mk@mcdim.xyz>\n\n"
 
-		"-n  Increment numerical lines as well\n"
-		"-h  Print this panel & exit\n"
-		"-v  Print current version & exit\n\n"
+		"-n  increment numerical lines as well\n"
+		"-h  print this panel & exit\n"
+		"-v  print current version & exit\n\n"
 
-		"Usage:	cat [FILENAME] | %s [MIN] [MAX] [OPTIONS]\n",
+		"Usage:	cat [FILENAME] | %s [MIN] [MAX] [-n]\n",
 		VERSION, exename);
 	exit(EXIT_SUCCESS);
 }
