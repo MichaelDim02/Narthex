@@ -1,0 +1,40 @@
+.\" Manpage for napp
+
+.TH man 8 "10 Oct 2021" "1.0" "napp manual page"
+.SH NAME
+napp \- Narthex appender 
+.SH SYNOPSIS
+cat dictionary.txt | napp [OPTIONS] > output.txt
+.SH DESCRIPTION
+napp appends extra symbols or words to the end of each line.
+
+.SH OPTIONS
+-c	specify charset
+
+-w	specify wordlist
+
+-s	salt mode (do not print stdin as-is in the beginning)
+
+-f	insert to the front of the line, instead of appending
+
+-v	print version and exit
+
+-h	print help panel and exit
+
+.SH EXAMPLES
+
+This will append the symbols separately to the end of each line of stdin, after printing stdin as-is, and directs the output to output.txt
+
+cat dict.txt | napp -c #@?& > output.txt
+
+The following will insert the words of the file2.txt (-w) before each line (-f) of file1.txt, without first printing the stdin as-is (-s), and redirects the output to output.txt 
+
+cat file1.txt | napp -w file2.txt -f -s > output.txt
+
+.SH AUTHOR
+Michael Constantine Dimopoulos <mk@mcdim.xyz>
+
+https://mcdim.xyz
+
+.SH LICENSE
+GNU General Public License 3.0 (GPL-3.0)
