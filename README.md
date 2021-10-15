@@ -1,5 +1,5 @@
 # Narthex
-<img src="https://mcdim.xyz/projects/n/narthexblack.png" alt="Narthex logo" style="height: 100px; width:100px;"/>
+<img src="https://mcdim.xyz/projects/n/narthexblack.png" alt="Narthex logo" style="height: 150px; width:150px;"/>
 
 Narthex (Greek: Νάρθηξ, νάρθηκας) is a modular & minimal dictionary generator for Unix and Unix-like operating system written in C and Shell. It contains autonomous Unix-style programs for the creation of personalised dictionaries that can be used for password recovery & security assessment. The programs make use of Unix text streams for the collaboration with each other, according to the Unix philosophy. It is licensed under the GPL v3.0. Currently under development!
 
