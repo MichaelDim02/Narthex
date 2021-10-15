@@ -46,7 +46,8 @@ $ nwiz
 ```
 And it will ask you for the target's information & generate the dictionary for you.
 
-For advanced usage, you can read the manpages of each tool. What they all do, really, is enhance small dictionaries. For example, save a couple keywords into a textfile ```words.txt``` in a different line each, and run the following
+## Advanced usage
+If you want to make full use of Narthex, you can read the manpages of each tool. What they all do, really, is enhance small dictionaries. They are really minimal, and use Unix text streams to read and output data. For example, save a couple keywords into a textfile ```words.txt``` in a different line each, and run the following
 ```
 $ cat words.txt | nhance -f | ncom | nrev | nleet | ninc 1 30 > dictionary.txt
 ```
