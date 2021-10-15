@@ -17,6 +17,10 @@ https://www.youtube.com/watch?v=U0UmCeLJSkk&t=938s
 + napp      -  A tool that appends characters or words before or after the lines of the dictionary.
 + nwiz      -  A wizard that asks for the infromation and combines the tools together to create a final dictionary.
 
+## Screenshots
+<img src="https://mcdim.xyz/projects/n/screens/narthex2.png" alt="Narthex logo" style="height: 150px; width:150px;"/>
+<img src="https://mcdim.xyz/projects/n/screens/narthex1.png" alt="Narthex logo" style="height: 150px; width:150px;"/>
+
 ## Install
 In order to install, execute the following commands:
 ```
