@@ -19,7 +19,7 @@ https://www.youtube.com/watch?v=U0UmCeLJSkk&t=938s
 
 ## Screenshots
 <img src="https://mcdim.xyz/projects/n/screens/narthex2.png" alt="Narthex logo" style="height: 150px; width:150px;"/>
-<img src="https://mcdim.xyz/projects/n/screens/narthex1.png" alt="Narthex logo" style="height: 150px; width:150px;"/>
+<img src="https://mcdim.xyz/projects/n/screens/narthex1.png" alt="Narthex logo"/>
 
 ## Install
 In order to install, execute the following commands:
