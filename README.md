@@ -46,8 +46,8 @@ $ nwiz
 ```
 And it will ask you for the target's information & generate the dictionary for you.
 
-For advanced usage, you can read the manpages of each tool. What they all do, really, is enhance small dictionaries. For example you can run
+For advanced usage, you can read the manpages of each tool. What they all do, really, is enhance small dictionaries. For example, save a couple keywords into a textfile ```words.txt``` in a different line each, and run the following
 ```
-$ cat words.txt | nhance -f | nrev | nleet | ninc 1 10 > words2.txt
+$ cat words.txt | nhance -f | ncom | nrev | nleet | ninc 1 30 > dictionary.txt
 ```
-on a small wordlist and you can see the result for yourself.
+and you'll see the results for yourself.
