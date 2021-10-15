@@ -16,14 +16,14 @@ https://www.youtube.com/watch?v=U0UmCeLJSkk&t=938s
 (the timestamp is intentional)
 
 ## The tools
-+ nchance   -  A capitalization tool that appends the results to the bottom of the dictionary.
-+ ninc      -  A incrementation tool that multiplies alphabetical lines and appends an n++ at the end of each line.
-+ ncom      -  A combination tool that creates different combinations between the existing lines of the dictionary.
-+ nrev      -  A reversing tool, that appends the reserved versions of the lines at the end of the dictionary.
-+ nleet     -  A leetifier. Replaces characters with Leet equivalents, such as @ instead of a, or 3 instead of e.
-+ nclean    -  A tool for removing passwords that don't meet your criteria (too short, no special characters etc.)
-+ napp      -  A tool that appends characters or words before or after the lines of the dictionary.
-+ nwiz      -  A wizard that asks for the infromation and combines the tools together to create a final dictionary.
++ *nchance*   -  A capitalization tool that appends the results to the bottom of the dictionary.
++ *ninc*      -  A incrementation tool that multiplies alphabetical lines and appends an n++ at the end of each line.
++ *ncom*      -  A combination tool that creates different combinations between the existing lines of the dictionary.
++ *nrev*      -  A reversing tool, that appends the reserved versions of the lines at the end of the dictionary.
++ *nleet*     -  A leetifier. Replaces characters with Leet equivalents, such as @ instead of a, or 3 instead of e.
++ *nclean*    -  A tool for removing passwords that don't meet your criteria (too short, no special characters etc.)
++ *napp*      -  A tool that appends characters or words before or after the lines of the dictionary.
++ *nwiz*      -  A wizard that asks for the infromation and combines the tools together to create a final dictionary.
 
 ## Screenshots
 <p float="left">
