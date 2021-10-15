@@ -29,7 +29,7 @@ https://www.youtube.com/watch?v=U0UmCeLJSkk&t=938s
 ## Screenshots
 <p float="left">
 <img src="https://mcdim.xyz/projects/n/screens/narthex2.png" alt="Narthex logo" width=50%/>
-<img src="https://mcdim.xyz/projects/n/screens/narthex1.png" alt="Narthex logo" width=39%/>
+<img src="https://mcdim.xyz/projects/n/screens/narthex1.png" alt="Narthex logo" width=38.7%/>
 </p>
 
 ## Install
