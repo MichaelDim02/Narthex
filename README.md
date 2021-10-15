@@ -18,7 +18,7 @@ https://www.youtube.com/watch?v=U0UmCeLJSkk&t=938s
 + nwiz      -  A wizard that asks for the infromation and combines the tools together to create a final dictionary.
 
 ## Screenshots
-<img src="https://mcdim.xyz/projects/n/screens/narthex2.png" alt="Narthex logo" style="height: 150px; width:150px;"/>
+<img src="https://mcdim.xyz/projects/n/screens/narthex2.png" alt="Narthex logo"/>
 <img src="https://mcdim.xyz/projects/n/screens/narthex1.png" alt="Narthex logo"/>
 
 ## Install
