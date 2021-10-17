@@ -6,19 +6,19 @@ echo "=Questions="
 echo -n "Name: "
 read n; echo "$n" >> /tmp/nrthxtmp;
 echo -n "Last name: "
-read lname; echo "$ln" >> /tmp/nrthxtmp;
+read lname; echo "$lname" >> /tmp/nrthxtmp;
 echo -n "Nickname: "
-read nn;echo "$nn" >> /tmp/nrthxtmp;
+read nn; echo "$nn" >> /tmp/nrthxtmp;
 echo -n "Birthday: "
 read bd; echo "$bd"  >> /tmp/nrthxtmp;
 echo -n "Birthyear: "
-read by;echo "$by" >> /tmp/nrthxtmp;
+read by; echo "$by" >> /tmp/nrthxtmp;
 echo -n "Phone number: "
 read phn; echo "$phn" >> /tmp/nrthxtmp;
 echo -n "Pet name: "
 read pn; echo "$pn" >> /tmp/nrthxtmp;
 echo -n "Current City: "
-read pn; echo "$cy" >> /tmp/nrthxtmp;
+read cy; echo "$cy" >> /tmp/nrthxtmp;
 echo -n "Spouse name: "
 read sn; echo "$sn" >> /tmp/nrthxtmp;
 echo "Other keywords (separated by space): "
