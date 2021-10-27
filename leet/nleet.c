@@ -1,20 +1,30 @@
 /*
  *     nleet - Narthex leetifier
  *    
- *  By Michael Constantine Dimopoulos
- *  https://mcdim.xyz   <mk@mcdim.xyz>
+ *  By Michael Constantine Dimopoulos https://mcdim.xyz <mk@mcdim.xyz>
  *  License: GNU GPL v3
  *        
- *  nleet will iterate over stdin or
- *  a file and, after printing the
- *  dictionary as is, it will reprint
- *  it this time with some characters
- *  replaced with their leet equiva-
- *  lents. (hello -> h3ll0)
+ *  nleet will iterate over stdin or a file and, after printing the
+ *  dictionary as is, it will reprint it this time with some characters
+ *  replaced with their leet equivalents. (hello -> h3ll0)
  *
- *  You are encouraged to edit &
- *  recompile this file if you want
- *  to edit the substitution rules.
+ *  You are encouraged to edit & recompile this file if you want to edit
+ *  the substitution rules.
+ *
+ * * * * * * * *
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  */
 
@@ -24,12 +34,12 @@
 #include <errno.h>
 #include <string.h>
 
-#define VERSION "v1.3"
+#define VERSION "v1.3.1"
 #define BUFFER_SIZE 256
 
 
 static void
-help(char * exename)
+help(char *exename)
 {
 	printf( "nleet - Narthex leetfier %s\n"
 		"By Michael Constantine Dimopoulos <mk@mcdim.xyz>\n\n"
@@ -42,19 +52,19 @@ help(char * exename)
 	exit(EXIT_SUCCESS);
 }
 
-static void
+static inline void
 die(char * str)
 {
 	printf("%s\n", str);
 	exit(EXIT_SUCCESS);
 }
 
-FILE *
+static FILE *
 save_stdin(FILE *f)
 {
 	FILE *f2 = tmpfile();
 	char buffer[BUFFER_SIZE];
-	while(fgets(buffer, sizeof(buffer), f) != NULL)  {
+	while (fgets(buffer, sizeof(buffer), f) != NULL)  {
 		fprintf(f2, "%s", buffer);
 	}
 	fclose(f);
@@ -74,13 +84,11 @@ static void
 leetify(FILE *f, int full_upper)
 {
 	char buffer[BUFFER_SIZE];
-	while(fgets(buffer, sizeof(buffer), f) != NULL) {
+	while (fgets(buffer, sizeof(buffer), f) != NULL) {
 		int i;
 
 		/*
-		 *
-		 *     vv EDIT THIS PART vv
-		 *
+		 *     vv  EDIT THIS PART  vv
 		 */
 
 		int npflag = 0;
@@ -102,6 +110,7 @@ leetify(FILE *f, int full_upper)
 		 *		npflag = 1; */
 			}
 		}
+
 		if (npflag == 1) printf("%s",buffer);
 	}
 }
@@ -136,6 +145,7 @@ main(int argc, char* argv[])
 	print_only(f2);
 	rewind(f2);
 	leetify(f2,0);
+
 	if (full_upper == 1) {
 		rewind(f2);
 		leetify(f2,1);
