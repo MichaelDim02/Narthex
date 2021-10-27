@@ -1,13 +1,27 @@
 #!/bin/sh
 
-#      nrev - Narthex reverser
-#  by Michael Constantine Dimopoulos
-#  https://mcdim.xyz  <mk@mcdim.xyz>
 #
-#  nrev iterates over stdin or a file
-#  and, after reprinting the diction-
-#  ary, it will reprint it again but
-#  with each line reversed.
+#      nrev - Narthex reverser
+#  by Michael Constantine Dimopoulos https://mcdim.xyz <mk@mcdim.xyz>
+#
+#  nrev iterates over stdin or a file and, after reprinting the
+#  dctionary, it will reprint it again but with each line reversed.
+#
+###################
+#
+#  This program is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or
+#  (at your option) any later version.
+#
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
 
 version="1.1"
 
