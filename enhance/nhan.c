@@ -1,17 +1,28 @@
 /*
  *     nhance - Narthex enhancer
  *    
- *  By Michael Constantine Dimopoulos
- *  https://mcdim.xyz   <mk@mcdim.xyz>
+ *  By Michael Constantine Dimopoulos https://mcdim.xyz <mk@mcdim.xyz>
  *  License: GNU GPL v3
  *  
- *  nhance iterates over stdin and,
- *  after printing the dictionary as
- *  is, it will reprint it this time
- *  with the first letter capitalized.
- *  It can also append full capitali-
- *  zations at the end of the dictio-
- *  nary with the -f flag.
+ *  nhance iterates over stdin and, after printing the dictionary as is
+ *  it will reprint it this time with the first letter capitalized. Ir
+ *  can also append full capitalizations at the end of the dictionary
+ *  with the -f flag.
+ *
+ * * * * * * * *
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  */
 
@@ -21,12 +32,12 @@
 #include <errno.h>
 #include <string.h>
 
-#define VERSION "v1.3"
+#define VERSION "v1.3.1"
 #define BUFFER_SIZE 256
 
 
 static void
-help(char * exename)
+help(char *exename)
 {
 	printf( "nhance - Narthex enhancer %s\n"
 		"By Michael Constantine Dimopoulos <mk@mcdim.xyz>\n\n"
@@ -41,19 +52,19 @@ help(char * exename)
 	exit(EXIT_SUCCESS);
 }
 
-static void
-die(char * str)
+static inline void
+die(char *str)
 {
 	printf("%s\n", str);
 	exit(EXIT_SUCCESS);
 }
 
-FILE *
+static FILE *
 save_stdin(FILE *f)
 {
 	FILE *f2 = tmpfile();
 	char buffer[BUFFER_SIZE];
-	while(fgets(buffer, sizeof(buffer), f) != NULL)  {
+	while (fgets(buffer, sizeof(buffer), f) != NULL)  {
 		fprintf(f2, "%s", buffer);
 	}
 	fclose(f);
@@ -76,7 +87,7 @@ void
 print_only(FILE *f)
 {
 	char buffer[BUFFER_SIZE];
-	while(fgets(buffer, sizeof(buffer), f) != NULL) {
+	while (fgets(buffer, sizeof(buffer), f) != NULL) {
 		printf("%s",buffer);
 	}
 }
@@ -85,12 +96,13 @@ static void
 enhance(FILE *f, int full_upper)
 {
 	char buffer[BUFFER_SIZE];
-	while(fgets(buffer, sizeof(buffer), f) != NULL) {
+	while (fgets(buffer, sizeof(buffer), f) != NULL) {
 		if (isalpha(buffer[0])) {
-			if (full_upper ==0)
+			if (full_upper == 0)
 				buffer[0] = toupper(buffer[0]);	
 			else
 				cap(buffer);
+
 			printf("%s",buffer);	
 		}
 
@@ -98,10 +110,10 @@ enhance(FILE *f, int full_upper)
 }
 
 void
-main(int argc, char* argv[])
+main(int argc, char *argv[])
 {
 	int full_upper, file = 0, i;
-	for (i=0; i<argc; i++) {
+	for (i = 0; i < argc; i++) {
 		if (strcmp(argv[i],"-f")==0) 
 			full_upper = 1;
 		else if (strcmp(argv[i],"-v")==0)
@@ -130,10 +142,12 @@ main(int argc, char* argv[])
 	print_only(f2);
 	rewind(f2);
 	enhance(f2,0);
+
 	if (full_upper == 1) {
 		rewind(f2);
 		enhance(f2,1);
 	}
+
 	fclose(f2);
 
 	exit(EXIT_SUCCESS);
