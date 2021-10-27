@@ -12,6 +12,21 @@
  *  words from a wordlist. It may or
  *  may not print stdin as is (-s)
  *
+ * * * * * * * *
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
  */
 
 #include <stdlib.h>
@@ -20,10 +35,10 @@
 #include <unistd.h>
 #include <ctype.h>
 
-#define VERSION "v1.1"
+#define VERSION "v1.1.1"
 #define BUFFER_SIZE 256
 
-static void
+static inline void
 usage(char *exename)
 {
 	fprintf(stderr, "Usage:	cat [FILENAME]"
@@ -32,7 +47,7 @@ usage(char *exename)
 }
 
 static void
-help(char * exename)
+help(char *exename)
 {
 	printf( "napp - Narthex appender %s\n"
 		"By Michael Constantine Dimopoulos <mk@mcdim.xyz>\n\n"
@@ -49,14 +64,14 @@ help(char * exename)
 	exit(EXIT_SUCCESS);
 }
 
-static void
-die(char * str)
+static inline void
+die(char *str)
 {
 	printf("%s\n", str);
 	exit(EXIT_SUCCESS);
 }
 
-FILE *
+static FILE *
 save_stdin(FILE *f)
 {
 	FILE *f2 = tmpfile();
@@ -106,7 +121,8 @@ print_only(FILE *f)
 void
 main(int argc, char * argv[])
 {
-	int c1=0, w=0, s=0, front=0;
+	int c1, w, s, front;
+	c1 = w = s = front = 0;
 	char cv[BUFFER_SIZE], wv[BUFFER_SIZE];
 	int index;
 	int c;
@@ -142,41 +158,43 @@ main(int argc, char * argv[])
 		}
 	}
 
-	if (c1 == 1 || w == 1) {
-		FILE * f;
-		f = save_stdin(stdin);
-		rewind(f);
-		if (!s) {
-			print_only(f);
-			rewind(f);
-		}
-
-		if (w) {
-			FILE * f2;
-			f2 = fopen(wv,"r");
-
-			if (f2 == NULL) {
-				fprintf(stdout, "Error opening file\n");
-				exit(EXIT_FAILURE);
-			}
-
-			char word[BUFFER_SIZE];
-			while(fgets(word, sizeof(word), f2) != NULL) {
-				strtok(word, "\n");
-				nappw(f, front, word);
-				rewind(f);
-			}
-		}
-
-		if (c1) {
-			for (int i = 0; cv[i] != '\0'; i++) {
-				nappc(f, front, cv[i]);
-				rewind(f);
-			}
-		}
-	} else {
+	if (c1 != 1 && w != 1) {
 		usage(argv[0]);
 		exit(EXIT_FAILURE);
+	}
+
+	FILE *f;
+	f = save_stdin(stdin);
+	rewind(f);
+
+	if (!s) {
+		print_only(f);
+		rewind(f);
+	}
+
+	if (w) {
+		FILE *f2;
+		f2 = fopen(wv,"r");
+
+		if (f2 == NULL) {
+			fprintf(stdout, "%s: Error opening file\n",
+			argv[0]);
+			exit(EXIT_FAILURE);
+		}
+
+		char word[BUFFER_SIZE];
+		while(fgets(word, sizeof(word), f2) != NULL) {
+			strtok(word, "\n");
+			nappw(f, front, word);
+			rewind(f);
+		}
+	}
+
+	if (c1) {
+		for (int i = 0; cv[i] != '\0'; i++) {
+			nappc(f, front, cv[i]);
+			rewind(f);
+		}
 	}
 
 	exit(EXIT_SUCCESS);
