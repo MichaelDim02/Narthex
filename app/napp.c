@@ -1,16 +1,12 @@
 /*
  *    napp - Narthex appender
  *
- *  By Michael Constantine Dimopoulos
- *  https://mcdim.xyz	<mk@mcdim.xyz>
+ *  By Michael Constantine Dimopoulos https://mcdim.xyz	<mk@mcdim.xyz>
  *  License: GNU GPL v3
  *
- *  napp will append to the end of,
- *  or insert to the front of, each
- *  line of stdin, characters from a
- *  a specified character set, or
- *  words from a wordlist. It may or
- *  may not print stdin as is (-s)
+ *  napp will append to the end of, or insert to the front of, each line
+ *  of stdin, characters from a specified character set, or words from a
+ *  wordlist. It may or may not print stdin as is (-s)
  *
  * * * * * * * *
  *
