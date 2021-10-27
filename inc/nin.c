@@ -1,20 +1,29 @@
 /*
  *    ninc - Narthex incrementor
  *
- *  By Michael Constantine Dimopoulos
- *  https://mcdim.xyz	<mk@mcdim.xyz>
+ *  By Michael Constantine Dimopoulos https://mcdim.xyz <mk@mcdim.xyz>
  *  License: GNU GPL v3
  *
- *  ninc will iterate over stdin and
- *  after printing the dictionary as
- *  is, it will reprint it but will
- *  also multiply each line with the
- *  difference of max-min, and will
- *  append n to each line, where n is
- *  increased after every line from
- *  min to max inclusive. (I know, I
- *  know. Just try to use it and it
- *  will make more sense).
+ *  ninc will iterate over stdin and  after printing the dictionary as is
+ *  it will reprint it but will also multiply each line with the
+ *  difference of max-min, and will append n to each line, where n is
+ *  increased after every line from min to max inclusive. (I know, I know.
+ *  Just try to use it and it will make more sense).
+ *
+ * * * * * * * *
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  */
 
@@ -23,11 +32,11 @@
 #include <string.h>
 #include <ctype.h>
 
-#define VERSION "v1.2"
+#define VERSION "v1.2.1"
 #define BUFFER_SIZE 256
 
 static void
-help(char * exename)
+help(char *exename)
 {
 	printf( "ninc - Narthex incrementor %s\n"
 		"By Michael Constantine Dimopoulos <mk@mcdim.xyz>\n\n"
@@ -41,19 +50,19 @@ help(char * exename)
 	exit(EXIT_SUCCESS);
 }
 
-static void
-die(char * str)
+static inline void
+die(char *str)
 {
 	printf("%s\n", str);
 	exit(EXIT_SUCCESS);
 }
 
-FILE *
+static FILE *
 save_stdin(FILE *f)
 {
 	FILE *f2 = tmpfile();
 	char buffer[BUFFER_SIZE];
-	while(fgets(buffer, sizeof(buffer), f) != NULL)  {
+	while (fgets(buffer, sizeof(buffer), f) != NULL)  {
 		fprintf(f2, "%s", buffer);
 	}
 	fclose(f);
@@ -61,7 +70,7 @@ save_stdin(FILE *f)
 }
 
 static int
-isnumber(char * str)
+isnumber(char *str)
 {
 	for (int i = 0; str[i] != '\0'; i++) {
 		if (isdigit(str[i]) != 0)
@@ -70,10 +79,10 @@ isnumber(char * str)
 	return 0;
 }
 
-static int
-check_num(int numerical, char * buffer)
+static inline int
+check_num(int num, char * buffer)
 {
-	return ((numerical == 0 && isnumber(buffer) == 0) || numerical == 1);
+	return ((num == 0 && isnumber(buffer) == 0) || num == 1);
 }
 
 static void
@@ -83,9 +92,8 @@ ninc(FILE *f, int min, int max, int numerical)
 	while (fgets(buffer, sizeof(buffer), f) != NULL) {
 		strtok(buffer, "\n");
 		for (int i = min; i <= max; i++) {
-			if (check_num(numerical, buffer) == 1) {
+			if (check_num(numerical, buffer) == 1)
 				printf("%s%d\n", buffer, i);
-			}
 		}
 	}
 }
@@ -94,7 +102,7 @@ static void
 print_only(FILE *f)
 {
 	char buffer[BUFFER_SIZE];
-	while(fgets(buffer, sizeof(buffer), f) != NULL) {
+	while (fgets(buffer, sizeof(buffer), f) != NULL) {
 		printf("%s",buffer);
 	}
 }
@@ -125,7 +133,7 @@ main(int argc, char * argv[])
 	}
 
 	if (min <= max) {
-		FILE * f;
+		FILE *f;
 		f = save_stdin(stdin);
 		rewind(f);
 		print_only(f);
