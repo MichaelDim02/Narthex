@@ -34,7 +34,7 @@
 #include <errno.h>
 #include <string.h>
 
-#define VERSION "v1.3.1"
+#define VERSION "v1.3.2"
 #define BUFFER_SIZE 256
 
 
@@ -107,7 +107,7 @@ leetify(FILE *f, int full_upper)
 				npflag = 1;
 		/*	} else if (buffer[i] == 't' || buffer[i] == 'T') {
 		 *		buffer[i] = '7';
-		 *		npflag = 1; */
+		 *		npflag = 1;				*/
 			}
 		}
 
@@ -132,11 +132,12 @@ main(int argc, char* argv[])
 	if (file != 0) {
 		FILE *f = fopen(argv[file], "r");
 
-		if (f)
+		if (f) {
 			f2= save_stdin(f);
-		else
+		} else {
 			fprintf(stderr, "%s: %s\n", argv[0], strerror(errno));
 			exit(EXIT_FAILURE);
+		}
 	} else {
 		f2 = save_stdin(stdin);
 	}
