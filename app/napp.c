@@ -31,7 +31,7 @@
 #include <unistd.h>
 #include <ctype.h>
 
-#define VERSION "v1.1.1"
+#define VERSION "v1.1.2"
 #define BUFFER_SIZE 256
 
 static inline void
@@ -109,7 +109,7 @@ static void
 print_only(FILE *f)
 {
 	char buffer[BUFFER_SIZE];
-	while(fgets(buffer, sizeof(buffer), f) != NULL) {
+	while (fgets(buffer, sizeof(buffer), f) != NULL) {
 		printf("%s",buffer);
 	}
 }
@@ -125,32 +125,32 @@ main(int argc, char * argv[])
 	extern char *optarg;
 	int optind = 0;
 
-	while ( (c = getopt(argc, argv, "c:w:sfvh")) != -1 ) {
+	while ((c = getopt(argc, argv, "c:w:sfvh")) != -1 ) {
 		switch (c) {
-			case 'v':
-				die(VERSION);
-			case 'h':
-				help(argv[0]);
-			case 'c':
-				c1=1;
-				w=0;
-				strncpy(cv, optarg, BUFFER_SIZE);
-				break;
-			case 'w':
-				w=1;
-				c1=0;
-				strncpy(wv, optarg, BUFFER_SIZE);
-				break;
-			case 's':
-				s=1;
-				break;
-			case 'f':
-				front=1;
-				break;
-			case '?':
-				usage(argv[0]);
-				exit(EXIT_FAILURE);
-				break;
+		case 'v':
+			die(VERSION);
+		case 'h':
+			help(argv[0]);
+		case 'c':
+			c1=1;
+			w=0;
+			strncpy(cv, optarg, BUFFER_SIZE);
+			break;
+		case 'w':
+			w=1;
+			c1=0;
+			strncpy(wv, optarg, BUFFER_SIZE);
+			break;
+		case 's':
+			s=1;
+			break;
+		case 'f':
+			front=1;
+			break;
+		case '?':
+			usage(argv[0]);
+			exit(EXIT_FAILURE);
+			break;
 		}
 	}
 

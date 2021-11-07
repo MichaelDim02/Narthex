@@ -106,6 +106,7 @@ com(FILE *f2, FILE *f3, int d, int u, int m, int n, int b)
 				}
 			}
 		}
+
 		rewind(f3);
 	}
 }
@@ -132,29 +133,29 @@ main(int argc, char *argv[])
 
 	while ((c = getopt(argc, argv, "dumnvbh")) != -1 )
 		switch (c) {
-			case 'v':
-				die(VERSION);
-			case 'h':
-				help(argv[0]);
-			case 'd':
-				d=1;
-				break;
-			case 'u':
-				u=1;
-				break;
-			case 'm':
-				m=1;
-				break;
-			case 'n':
-				n=1;
-				break;
-			case 'b':
-				b=1;
-				break;
-			case '?':
-				/*fprintf (stderr, "Unknown option `%c`\n", c);*/
-				exit(EXIT_FAILURE);
-				break;
+		case 'v':
+			die(VERSION);
+		case 'h':
+			help(argv[0]);
+		case 'd':
+			d=1;
+			break;
+		case 'u':
+			u=1;
+			break;
+		case 'm':
+			m=1;
+			break;
+		case 'n':
+			n=1;
+			break;
+		case 'b':
+			b=1;
+			break;
+		case '?':
+			/*fprintf (stderr, "Unknown option `%c`\n", c);*/
+			exit(EXIT_FAILURE);
+			break;
 		}
 
 	/* for troubleshooting:

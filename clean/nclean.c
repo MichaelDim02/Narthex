@@ -22,7 +22,7 @@
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
- *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *  along with this program. If not, see <https://www.gnu.org/licenses/>.
  *
  */
 
@@ -32,7 +32,7 @@
 #include <ctype.h>
 #include <unistd.h>
 
-#define VERSION "v1.1.1"
+#define VERSION "v1.1.2"
 #define BUFFER_SIZE 256
 
 static inline void
@@ -145,29 +145,29 @@ main(int argc, char *argv[])
 	extern char *optarg;
 	int optind = 0;
 
-	while ( (c = getopt(argc, argv, "cnsvhl:")) != -1 ) {
+	while ((c = getopt(argc, argv, "cnsvhl:")) != -1 ) {
 		switch (c) {
-			case 'v':
-				die(VERSION);
-			case 'h':
-				help(argv[0]);
-			case 'c':
-				c1=1;
-				break;
-			case 'n':
-				n=1;
-				break;
-			case 's':
-				s=1;
-				break;
-			case 'l':
-				l=1;
-				lvalue=atoi(optarg);
-				break;
-			case '?':
-				usage(argv[0]);
-				exit(EXIT_FAILURE);
-				break;
+		case 'v':
+			die(VERSION);
+		case 'h':
+			help(argv[0]);
+		case 'c':
+			c1=1;
+			break;
+		case 'n':
+			n=1;
+			break;
+		case 's':
+			s=1;
+			break;
+		case 'l':
+			l=1;
+			lvalue=atoi(optarg);
+			break;
+		case '?':
+			usage(argv[0]);
+			exit(EXIT_FAILURE);
+			break;
 		}
 	}
 
