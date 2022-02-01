@@ -23,9 +23,9 @@
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 
-version="1.1"
+version="1.2"
 
-if   [ "$1" = "-v" ]; then echo version; exit;
+if   [ "$1" = "-v" ]; then echo $version; exit;
 elif [ "$1" = "-h" ];
 then
 	printf  "nrev - Narthex reverser ${version}  \n";
