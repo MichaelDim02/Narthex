@@ -54,6 +54,6 @@ $ cat words.txt | nhance -f | ncom | nrev | nleet | ninc 1 30 > dictionary.txt
 and you'll see the results for yourself.
 
 ## Donate
-[![paypal](https://mcdim.xyz/media/button_paypal.png)](https://www.paypal.com/donate/?hosted_button_id=HZXXLD586P5CW)
+[![paypal](https://mcdim.xyz/media/button_paypal2.png)](https://www.paypal.com/donate/?hosted_button_id=HZXXLD586P5CW)
 
-More donate options on the website: <a href="https://mcdim.xyz/"/>mcdim.xyz</a>
+More donation options on the website: <a href="https://mcdim.xyz/"/>mcdim.xyz</a>
