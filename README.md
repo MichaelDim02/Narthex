@@ -52,3 +52,12 @@ If you want to make full use of Narthex, you can read the manpages of each tool.
 $ cat words.txt | nhance -f | ncom | nrev | nleet | ninc 1 30 > dictionary.txt
 ```
 and you'll see the results for yourself.
+
+## Donate
+<form action="https://www.paypal.com/donate" method="post" target="_top">
+<input type="hidden" name="hosted_button_id" value="HZXXLD586P5CW" />
+<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+<img alt="" border="0" src="https://www.paypal.com/en_GR/i/scr/pixel.gif" width="1" height="1" />
+</form>
+
+More donate options on the website: <a href="https://mcdim.xyz/"/>mcdim.xyz</a>
