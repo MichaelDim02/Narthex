@@ -37,7 +37,7 @@
 #include <unistd.h>
 #include <ctype.h>
 
-#define VERSION "v1.1.1"
+#define VERSION "v1.1.2"
 #define BUFFER_SIZE 256
 
 static void
@@ -55,7 +55,8 @@ help(char *exename)
 		"-v  print current version & exit\n\n"
 
 		"Usage:	cat [FILENAME] | %s [-d] [-u] [-m] [-n] [-b]\n",
-		VERSION, exename);
+		"       %s [FILENAME] [OPTIONS]\n",
+		VERSION, exename, exename);
 	exit(EXIT_SUCCESS);
 }
 
@@ -87,8 +88,21 @@ isnumber(char * str)
 	return 0;
 }
 
+static inline void
+ssprint(char *buffer, char *buffer2, char del, int n, int b)
+{
+	if ((n == 1 && isnumber(buffer) == 0) || n == 0) {
+		if ((b == 1 && strcmp(buffer,buffer2) != 0) || b == 0) {
+			if (del == ' ')
+				printf("%s%s\n", buffer, buffer2);
+			else
+				printf("%s%c%s\n", buffer, del, buffer2);
+		}
+	}
+}
+
 static void
-com(FILE *f2, FILE *f3, int d, int u, int m, int n, int b)
+com(FILE *f2, FILE *f3, char del, int n, int b)
 {
 	char buffer[BUFFER_SIZE];
 	char buffer2[BUFFER_SIZE];
@@ -97,14 +111,7 @@ com(FILE *f2, FILE *f3, int d, int u, int m, int n, int b)
 		strtok(buffer, "\n");
 		while (fgets(buffer2, sizeof(buffer2), f3) != NULL) {
 			strtok(buffer2, "\n");
-			if ((n == 0 && isnumber(buffer) == 0) || n == 1) {
-				if ((b == 1 && strcmp(buffer,buffer2) != 0) || b == 0) {
-					if (d == 1)      printf("%s.%s\n", buffer, buffer2);
-					else if (m == 1) printf("%s-%s\n", buffer, buffer2);
-					else if (u == 1) printf("%s_%s\n", buffer, buffer2);
-					else             printf("%s%s\n",  buffer, buffer2);
-				}
-			}
+			ssprint(buffer, buffer2, del, n, b);
 		}
 
 		rewind(f3);
@@ -123,9 +130,11 @@ print_only(FILE *f)
 void
 main(int argc, char *argv[])
 {
-	int d, u, m, b, n;
-	d = u = m = b = n;
+	int d, u, m, b, n, t;
+	d = u = m = b = n = t = 0;
 	char *cvalue = NULL;
+	char filename[256];
+	int filename_given = 0;
 	int index;
 	int c;
 
@@ -153,46 +162,51 @@ main(int argc, char *argv[])
 			b=1;
 			break;
 		case '?':
-			/*fprintf (stderr, "Unknown option `%c`\n", c);*/
 			exit(EXIT_FAILURE);
 			break;
 		}
 
-	/* for troubleshooting:
-	 * printf("d:%i\nm:%i\nu:%i\n", d, m, u);
-	 */
+	if (optind < argc) {
+		strcpy(filename, argv[optind]);
+		filename_given = 1;
+	}
 
 	FILE *f2, *f3;
-	f2 = save_stdin(stdin);
-	rewind(f2);
-	f3 = save_stdin(f2);
+	if (filename_given == 0) {
+		f2 = save_stdin(stdin);
+		rewind(f2);
+		f3 = save_stdin(f2);
+	} else {
+		f2 = fopen(filename, "r");
+		f3 = fopen(filename, "r");
+		if (!f2) {
+			fprintf(stderr, "File could not be opened: %s\n",
+		                filename);
+			exit(EXIT_FAILURE);
+		}
+	}
 
 	rewind(f2);
 	print_only(f2);
 	rewind(f2);
 	rewind(f3);
 
-	/* Now this will call com(); for every
-	 * possible set option.
-	 *
-	 *          d  u  m      */
-
-	com(f2, f3, 0, 0, 0, n, b);
+	com(f2, f3, ' ', n, b);
 
 	if (d == 1) {
 		rewind(f2);
 		rewind(f3);
-		com(f2, f3, 1, 0, 0, n, b);
+		com(f2, f3, '.', n, b);
 	}
 	if (u == 1) {
 		rewind(f2);
 		rewind(f3);
-		com(f2, f3, 0, 1, 0, n, b);
+		com(f2, f3, '_', n, b);
 	}
 	if (m == 1) {
 		rewind(f2);
 		rewind(f3);
-		com(f2, f3, 0, 0, 1, n, b);
+		com(f2, f3, '-', n, b);
 	}
 
 	fclose(f2);

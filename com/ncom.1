@@ -1,10 +1,11 @@
 .\" Manpage for ncom
 
-.TH man 8 "26 Jul 2021" "1.1.1" "ncom manual page"
+.TH man 8 "26 Jul 2021" "1.1.2" "ncom manual page"
 .SH NAME
 ncom \- Narthex combinator
 .SH SYNOPSIS
 cat dictionary.txt | ncom [OPTIONS] > output.txt
+ncom dictionary.txt [OPTIONS] > output.txt
 .SH DESCRIPTION
 ncom iterates over stdin and after printing the dictionary as is, it will print it again but will also append every line of stdin to each iteration creating, that way, a list of combinations (pairs) of the lines.
 
