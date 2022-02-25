@@ -32,6 +32,9 @@ https://www.youtube.com/watch?v=U0UmCeLJSkk&t=938s
 <img src="https://mcdim.xyz/projects/n/screens/narthex1.png" alt="Narthex logo" width=38.8%/>
 </p>
 
+## Dependencies
+**Narthex has no hard dependencies**, however there are two building dependencies, `GCC` and `Make`, which are both required in order to easily compile and install the binaries, but not to run them.
+
 ## Install
 In order to install, execute the following commands:
 ```
