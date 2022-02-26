@@ -28,11 +28,12 @@
  */
 
 #include <stdlib.h>
+#include <unistd.h>
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
 
-#define VERSION "v1.2.1"
+#define VERSION "v1.2.2"
 #define BUFFER_SIZE 256
 
 static void
@@ -41,11 +42,12 @@ help(char *exename)
 	printf( "ninc - Narthex incrementor %s\n"
 		"By Michael Constantine Dimopoulos <mk@mcdim.xyz>\n\n"
 
+		"-d  use delimiters (specify in a string)\n"
 		"-n  increment numerical lines as well\n"
 		"-h  print this panel & exit\n"
 		"-v  print current version & exit\n\n"
 
-		"Usage:	cat [FILENAME] | %s [MIN] [MAX] [-n]\n",
+		"Usage:	cat [FILENAME] | %s [MIN] [MAX] [OPTIONS]\n",
 		VERSION, exename);
 	exit(EXIT_SUCCESS);
 }
@@ -86,14 +88,18 @@ check_num(int num, char * buffer)
 }
 
 static void
-ninc(FILE *f, int min, int max, int numerical)
+ninc(FILE *f, int min, int max, int numerical, char del)
 {
 	char buffer[BUFFER_SIZE];
 	while (fgets(buffer, sizeof(buffer), f) != NULL) {
 		strtok(buffer, "\n");
 		for (int i = min; i <= max; i++) {
-			if (check_num(numerical, buffer) == 1)
-				printf("%s%d\n", buffer, i);
+			if (check_num(numerical, buffer) == 1) {
+				if (del == ' ')
+					printf("%s%d\n", buffer, i);
+				else
+					printf("%s%c%d\n", buffer, del, i);
+			}
 		}
 	}
 }
@@ -112,34 +118,60 @@ main(int argc, char * argv[])
 {
 	int min = 1;
 	int max = 10;
+	int d = 0;
+	char del[10];
 	int numerical = 0;
+	int index;
+	int c;
 
-	if (argc == 2) {
-		if (strcmp(argv[1], "-h") == 0)
-			help(argv[0]);
-		else if (strcmp(argv[1], "-v") ==0)
+	opterr = 0;
+
+	while ((c = getopt(argc, argv, "d:nvh")) != -1 )
+		switch (c) {
+		case 'v':
 			die(VERSION);
-	} else if (argc == 3) {
-		min = atoi(argv[1]);
-		max = atoi(argv[2]);
-	} else if (argc == 4) {
-		min = atoi(argv[1]);
-		max = atoi(argv[2]);
-		if (strcmp(argv[3], "-n") == 0)
-			numerical = 1;
+		case 'h':
+			help(argv[0]);
+		case 'd':
+			d=1;
+			strncpy(del, optarg, 10);
+			break;
+		case 'n':
+			numerical=1;
+			break;
+		case '?':
+			exit(EXIT_FAILURE);
+			break;
+		}
+
+
+	if (optind < argc) {
+		min = atoi(argv[optind]);
+		max = atoi(argv[optind+1]);
 	} else {
 		fprintf(stderr, "%s: wrong number of arguments\n", argv[0]);
 		exit(EXIT_FAILURE);
 	}
 
-	if (min <= max) {
-		FILE *f;
-		f = save_stdin(stdin);
-		rewind(f);
-		print_only(f);
-		rewind(f);
-		ninc(f, min, max, numerical);
+	if (min > max) {
+		int temp = max;
+		max = min;
+		min = temp;
 	}
 
+	FILE *f;
+	f = save_stdin(stdin);
+	rewind(f);
+	print_only(f);
+	rewind(f);
+	ninc(f, min, max, numerical, ' ');
+
+	for (int i = 0; i < strlen(del); i++) {
+		rewind(f);
+		ninc(f, min, max, numerical, del[i]);
+	}
+
+
 	exit(EXIT_SUCCESS);
+
 }
