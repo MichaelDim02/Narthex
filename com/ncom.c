@@ -52,8 +52,8 @@ help(char *exename)
 		"-h  print this panel & exit\n"
 		"-v  print current version & exit\n\n"
 
-		"Usage:	cat [FILENAME] | %s [-d] [-n] [-b]\n",
-		"       %s [FILENAME] [OPTIONS]\n",
+		"Usage:	cat [FILENAME] | %s [-d] [-n] [-b]\n"
+		"        %s [FILENAME] [OPTIONS]\n",
 		VERSION, exename, exename);
 	exit(EXIT_SUCCESS);
 }
