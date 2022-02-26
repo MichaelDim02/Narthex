@@ -139,7 +139,7 @@ main(int argc, char *argv[])
 
 	opterr = 0;
 
-	while ((c = getopt(argc, argv, "d:umnvbh")) != -1 )
+	while ((c = getopt(argc, argv, "d:nvbh")) != -1 )
 		switch (c) {
 		case 'v':
 			die(VERSION);
@@ -161,7 +161,7 @@ main(int argc, char *argv[])
 		}
 
 	if (optind < argc) {
-		strcpy(filename, argv[optind]);
+		strncpy(filename, argv[optind], 256);
 		filename_given = 1;
 	}
 
