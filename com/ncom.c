@@ -37,7 +37,7 @@
 #include <unistd.h>
 #include <ctype.h>
 
-#define VERSION "v1.1.2"
+#define VERSION "v1.2.0"
 #define BUFFER_SIZE 256
 
 static void
@@ -46,15 +46,13 @@ help(char *exename)
 	printf( "ncom - Narthex combinator %s\n"
 		"By Michael Constantine Dimopoulos <mk@mcdim.xyz>\n\n"
 
-		"-d  use dot separator\n"
-		"-u  use underscore separator\n"
-		"-m  use hyphen separator\n"
+		"-d  use delimiters (specified in a string)\n"
 		"-n  exclude numerical bases\n"
 		"-b  exclude base-appended\n"
 		"-h  print this panel & exit\n"
 		"-v  print current version & exit\n\n"
 
-		"Usage:	cat [FILENAME] | %s [-d] [-u] [-m] [-n] [-b]\n",
+		"Usage:	cat [FILENAME] | %s [-d] [-n] [-b]\n",
 		"       %s [FILENAME] [OPTIONS]\n",
 		VERSION, exename, exename);
 	exit(EXIT_SUCCESS);
@@ -130,9 +128,10 @@ print_only(FILE *f)
 void
 main(int argc, char *argv[])
 {
-	int d, u, m, b, n, t;
-	d = u = m = b = n = t = 0;
+	int d, b, n, t;
+	d = b = n = t = 0;
 	char *cvalue = NULL;
+	char del[10];
 	char filename[256];
 	int filename_given = 0;
 	int index;
@@ -140,7 +139,7 @@ main(int argc, char *argv[])
 
 	opterr = 0;
 
-	while ((c = getopt(argc, argv, "dumnvbh")) != -1 )
+	while ((c = getopt(argc, argv, "d:umnvbh")) != -1 )
 		switch (c) {
 		case 'v':
 			die(VERSION);
@@ -148,12 +147,7 @@ main(int argc, char *argv[])
 			help(argv[0]);
 		case 'd':
 			d=1;
-			break;
-		case 'u':
-			u=1;
-			break;
-		case 'm':
-			m=1;
+			strncpy(del, optarg, 10);
 			break;
 		case 'n':
 			n=1;
@@ -181,7 +175,7 @@ main(int argc, char *argv[])
 		f3 = fopen(filename, "r");
 		if (!f2) {
 			fprintf(stderr, "File could not be opened: %s\n",
-		                filename);
+			filename);
 			exit(EXIT_FAILURE);
 		}
 	}
@@ -193,20 +187,10 @@ main(int argc, char *argv[])
 
 	com(f2, f3, ' ', n, b);
 
-	if (d == 1) {
+	for (int i = 0; i < strlen(del); i++) {
 		rewind(f2);
 		rewind(f3);
-		com(f2, f3, '.', n, b);
-	}
-	if (u == 1) {
-		rewind(f2);
-		rewind(f3);
-		com(f2, f3, '_', n, b);
-	}
-	if (m == 1) {
-		rewind(f2);
-		rewind(f3);
-		com(f2, f3, '-', n, b);
+		com(f2, f3, del[i], n, b);
 	}
 
 	fclose(f2);

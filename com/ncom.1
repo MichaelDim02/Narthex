@@ -1,6 +1,6 @@
 .\" Manpage for ncom
 
-.TH man 8 "26 Jul 2021" "1.1.2" "ncom manual page"
+.TH man 8 "26 Jul 2021" "1.2.0" "ncom manual page"
 .SH NAME
 ncom \- Narthex combinator
 .SH SYNOPSIS
@@ -10,11 +10,7 @@ ncom dictionary.txt [OPTIONS] > output.txt
 ncom iterates over stdin and after printing the dictionary as is, it will print it again but will also append every line of stdin to each iteration creating, that way, a list of combinations (pairs) of the lines.
 
 .SH OPTIONS
--d	use dot separator
-
--u	use underscore separator
-
--m	use hyphen separator
+-d	use delimiters (specified in a string)
 
 -n	exclude numerical bases, so if the base is '2002' and the part to be appended is 'word', the operation will not be executed.
 
