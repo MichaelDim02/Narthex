@@ -42,7 +42,7 @@ help(char *exename)
 	printf( "ninc - Narthex incrementor %s\n"
 		"By Michael Constantine Dimopoulos <mk@mcdim.xyz>\n\n"
 
-		"-d  use delimiters (specify in a string)\n"
+		"-d  use delimiters (specified in a string)\n"
 		"-n  increment numerical lines as well\n"
 		"-h  print this panel & exit\n"
 		"-v  print current version & exit\n\n"

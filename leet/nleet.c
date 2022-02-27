@@ -2,14 +2,11 @@
  *     nleet - Narthex leetifier
  *    
  *  By Michael Constantine Dimopoulos https://mcdim.xyz <mk@mcdim.xyz>
- *  License: GNU GPL v3
- *        
+ *  License: GNU GPL v3 *        
  *  nleet will iterate over stdin or a file and, after printing the
  *  dictionary as is, it will reprint it this time with some characters
- *  replaced with their leet equivalents. (hello -> h3ll0)
- *
- *  You are encouraged to edit & recompile this file if you want to edit
- *  the substitution rules.
+ *  replaced with their leet equivalents (hello -> h3ll0), as determined
+ *  by nleet, or, alternatively, as specified by the user.
  *
  * * * * * * * *
  *
@@ -34,7 +31,7 @@
 #include <errno.h>
 #include <string.h>
 
-#define VERSION "v1.3.2"
+#define VERSION "v1.4.0"
 #define BUFFER_SIZE 256
 
 
@@ -46,8 +43,8 @@ help(char *exename)
 
 		"-h  print this panel & exit\n"
 		"-v  print current version & exit\n\n"
-		"Usage:	cat [FILENAME] | %s\n"
-		"	%s [FILENAME]\n",
+		"Usage:	cat [FILENAME] | %s [OPTIONS]\n"
+		"	%s [FILENAME] [OPTIONS]\n",
 		VERSION, exename, exename);
 	exit(EXIT_SUCCESS);
 }
@@ -81,33 +78,19 @@ print_only(FILE *f)
 }
 
 static void
-leetify(FILE *f, int full_upper)
+leetify(FILE *f, char a[], char b[], int len)
 {
 	char buffer[BUFFER_SIZE];
 	while (fgets(buffer, sizeof(buffer), f) != NULL) {
-		int i;
-
-		/*
-		 *     vv  EDIT THIS PART  vv
-		 */
+		int i, j;
 
 		int npflag = 0;
-		for (i=0; i<=BUFFER_SIZE; i++) {
-			if (buffer[i] == 'a' || buffer[i] == 'A') {
-				buffer[i] = '@';
-				npflag = 1;
-			} else if (buffer[i] == 'o' || buffer[i] == 'O') {
-				buffer[i] = '0';
-				npflag = 1;
-			} else if (buffer[i] == 'i' || buffer[i] == 'I') {
-				buffer[i] = '1';
-				npflag = 1;
-			} else if (buffer[i] == 'e' || buffer[i] == 'E') {
-				buffer[i] = '3';
-				npflag = 1;
-		/*	} else if (buffer[i] == 't' || buffer[i] == 'T') {
-		 *		buffer[i] = '7';
-		 *		npflag = 1;				*/
+		for (i = 0; i < BUFFER_SIZE; i++) {
+			for (j = 0; j < len; j++) {
+				if (buffer[i] == a[j]) {
+ 					npflag = 1;
+					buffer[i] = b[j];
+				}
 			}
 		}
 
@@ -118,14 +101,23 @@ leetify(FILE *f, int full_upper)
 void
 main(int argc, char* argv[])
 {
-	int full_upper, file = 0, i;
-	for (i=0; i<argc; i++) {
-		if (strcmp(argv[i],"-v")==0)
+	int file = 0, args = 0, j = 0;
+	char a[100], b[100];
+	for (int i = 0; i < argc; i++) {
+		if (strcmp(argv[i],"-v") == 0) {
 			die(VERSION); 
-		else if (strcmp(argv[i],"-h")==0)
+		} else if (strcmp(argv[i], "-h") == 0) {
 			help(argv[0]);
-		else
-			file = i;
+		} else {
+			if (strlen(argv[i]) == 3 && i<100) {
+				args = 1;
+				a[j] = argv[i][0];
+				b[j] = argv[i][2];
+				j++;
+			} else {
+				file = i;
+			}
+		}
 	}
 
 	FILE *f2;
@@ -145,11 +137,12 @@ main(int argc, char* argv[])
 	rewind(f2);
 	print_only(f2);
 	rewind(f2);
-	leetify(f2,0);
-
-	if (full_upper == 1) {
-		rewind(f2);
-		leetify(f2,1);
+	if (args == 1) {
+		leetify(f2, a, b, j);
+	} else {
+		char c[4] = {'a', 'e', 'i', 'o'};
+		char d[4] = {'@', '3', '1', '0'};
+		leetify(f2, c, d, 4);
 	}
 
 	fclose(f2);
