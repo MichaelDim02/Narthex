@@ -52,9 +52,15 @@ And it will ask you for the target's information & generate the dictionary for y
 ## Advanced usage
 If you want to make full use of Narthex, you can read the manpages of each tool. What they all do, really, is enhance small dictionaries. They are really minimal, and use Unix text streams to read and output data. For example, save a couple keywords into a textfile ```words.txt``` in a different line each, and run the following
 ```
-$ cat words.txt | nhance -f | ncom | nrev | nleet | ninc 1 30 > dictionary.txt
+$ cat words.txt | nhance -f | ncom | nleet a:@ | ninc 1 30 > dictionary.txt
 ```
-and you'll see the results for yourself.
+and you'll see the results for yourself. Alterantively, you can try this for a larger and more complicated dictionary:
+```
+$ cat words.txt | nhance -f | ncom -d .- | ninc 1 200 -d .- | nrev | nleet | napp -c '@#$' > dict1.txt
+```
+The above, with just 4 keywords in `words.txt` (one of which was numerical), generated a wordlist of 2279744 passwords (38MB).
+
+As demonstrated, much like Unix utilities, the tools of Narthex can be thought of as building blocks, where the user has all the power to connect them in different possible ways to generate the desired list of passwords.
 
 ## Donate
 [![paypal](https://mcdim.xyz/media/button_paypal2.png)](https://www.paypal.com/donate/?hosted_button_id=HZXXLD586P5CW)
