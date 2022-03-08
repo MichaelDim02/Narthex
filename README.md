@@ -7,9 +7,9 @@
 <img src="https://img.shields.io/badge/lines%20of%20code-1k-lightgreen"/>
 <img src="https://img.shields.io/badge/tools-8-green"/>
 <img src="https://img.shields.io/badge/dependencies-0-green"/>
-<img src="https://img.shields.io/badge/license-GNU%20GPLv3-yellow"/>
+<img src="https://img.shields.io/badge/license-GNU%20GPLv3+-yellow"/>
 <a href="https://inventory.raw.pm/tools.html#Narthex"/><img src="https://inventory.raw.pm/img/badges/Rawsec-inventoried-FF5050_flat.svg"/></a>
-<img src="https://img.shields.io/badge/BlackArch-included-darkred"/>
+<a href="https://blackarch.org/tools.html"/><img src="https://img.shields.io/badge/BlackArch-included-darkred"/></a>
 
 </p>
 
