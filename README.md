@@ -8,6 +8,7 @@
 <img src="https://img.shields.io/badge/tools-8-green"/>
 <img src="https://img.shields.io/badge/dependencies-0-green"/>
 <img src="https://img.shields.io/badge/license-GNU%20GPLv3-yellow"/>
+[![Rawsec's CyberSecurity Inventory](https://inventory.raw.pm/img/badges/Rawsec-inventoried-FF5050_flat.svg)](https://inventory.raw.pm/tools.html#Narthex)
 </p>
 
 Narthex (Greek: Νάρθηξ, νάρθηκας) is a modular & minimal dictionary generator for Unix and Unix-like operating system written in C and Shell. It contains autonomous Unix-style programs for the creation of personalised dictionaries that can be used for password recovery & security assessment. The programs make use of Unix text streams for the collaboration with each other, according to the Unix philosophy. It is licensed under the GPL v3.0.
