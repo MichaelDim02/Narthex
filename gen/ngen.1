@@ -1,0 +1,42 @@
+.\" Manpage for ngen
+
+.TH man 8 "28 Dec 2023" "1.0" "ngen manual page"
+.SH NAME
+napp \- Narthex appender 
+.SH SYNOPSIS
+ngen [MIN] [MAX] [CHARS]
+MAX must be greater than or equal to MIN
+.SH DESCRIPTION
+ngen generates permutations of given length & character set. As ngen works recursively, you may have to run
+
+ulimit -s unlimited
+
+to set the stack size to unlimited.
+
+.SH OPTIONS
+
+-v	print version and exit
+
+-h	print help panel and exit
+
+.SH EXAMPLES
+
+This will generate all permutations of 'a', 'b', 'c', and 'd' of length 3, 4 & 5 and store them in the file output.txt
+
+ngen 3 5 abcd > output.txt
+
+The following will generate all permutatitions of '1', '2', '!' and '*' of length 5 and output them to standard output
+
+ngen 5 5 12\!\*
+
+The following will generate all permutatitions of '1', '2', and '3' of length 5, 6, 7, 8 and 9 and store them in output.txt
+
+ngen 5 9 122331
+
+.SH AUTHOR
+Michael Constantine Dimopoulos <mk@mcdim.xyz>
+
+https://mcdim.xyz
+
+.SH LICENSE
+GNU General Public License 3.0 (GPL-3.0)

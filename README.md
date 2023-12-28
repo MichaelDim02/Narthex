@@ -2,10 +2,10 @@
 <img src="https://mcdim.xyz/projects/n/narthexblack.png" alt="Narthex logo" style="height: 150px; width:150px;"/>
 
 <p float="left">
-<img src="https://img.shields.io/badge/version-1.2-blue"/>
+<img src="https://img.shields.io/badge/version-1.2.1-blue"/>
 <img src="https://img.shields.io/badge/language-C-lightgrey"/>
 <img src="https://img.shields.io/badge/lines%20of%20code-1k-lightgreen"/>
-<img src="https://img.shields.io/badge/tools-8-green"/>
+<img src="https://img.shields.io/badge/tools-9-green"/>
 <img src="https://img.shields.io/badge/dependencies-0-green"/>
 <img src="https://img.shields.io/badge/license-GNU%20GPLv3+-yellow"/>
 <a href="https://inventory.raw.pm/tools.html#Narthex"/><img src="https://inventory.raw.pm/img/badges/Rawsec-inventoried-FF5050_flat.svg"/></a>
@@ -27,6 +27,7 @@ https://www.youtube.com/watch?v=U0UmCeLJSkk&t=938s
 + *nleet*     -  A leetifier. Replaces characters with Leet equivalents, such as @ instead of a, or 3 instead of e.
 + *nclean*    -  A tool for removing passwords that don't meet your criteria (too short, no special characters etc.)
 + *napp*      -  A tool that appends characters or words before or after the lines of the dictionary.
++ *ngen*      -  A tool that generates permutations of given length & character set (works, but is under development).
 + *nwiz*      -  A wizard that asks for the infromation and combines the tools together to create a final dictionary.
 
 ## Screenshots
