@@ -34,21 +34,22 @@
 #include <ctype.h>
 
 #define VERSION "v1.2.2"
-#define BUFFER_SIZE 256
+#define BUFFER_SIZE 1024
 
 static void
 help(char *exename)
 {
-	printf( "ninc - Narthex incrementor %s\n"
-		"By Michael Constantine Dimopoulos <mk@mcdim.xyz>\n\n"
+	printf("ninc - Narthex incrementor %s\n"
+		   "By Michael Constantine Dimopoulos <mk@mcdim.xyz>\n\n"
 
-		"-d  use delimiters (specified in a string)\n"
-		"-n  increment numerical lines as well\n"
-		"-h  print this panel & exit\n"
-		"-v  print current version & exit\n\n"
+		   "-f  increment at the front AS WELL\n"
+		   "-d  use delimiters (specified in a string)\n"
+		   "-n  increment numerical lines as well\n"
+		   "-h  print this panel & exit\n"
+		   "-v  print current version & exit\n\n"
 
-		"Usage:	cat [FILENAME] | %s [MIN] [MAX] [OPTIONS]\n",
-		VERSION, exename);
+		   "Usage:	cat [FILENAME] | %s [MIN] [MAX] [OPTIONS]\n",
+		   VERSION, exename);
 	exit(EXIT_SUCCESS);
 }
 
@@ -64,7 +65,8 @@ save_stdin(FILE *f)
 {
 	FILE *f2 = tmpfile();
 	char buffer[BUFFER_SIZE];
-	while (fgets(buffer, sizeof(buffer), f) != NULL)  {
+	while (fgets(buffer, sizeof(buffer), f) != NULL)
+	{
 		fprintf(f2, "%s", buffer);
 	}
 	fclose(f);
@@ -74,7 +76,8 @@ save_stdin(FILE *f)
 static int
 isnumber(char *str)
 {
-	for (int i = 0; str[i] != '\0'; i++) {
+	for (int i = 0; str[i] != '\0'; i++)
+	{
 		if (isdigit(str[i]) != 0)
 			return 1;
 	}
@@ -82,23 +85,33 @@ isnumber(char *str)
 }
 
 static inline int
-check_num(int num, char * buffer)
+check_num(int num, char *buffer)
 {
 	return ((num == 0 && isnumber(buffer) == 0) || num == 1);
 }
 
 static void
-ninc(FILE *f, int min, int max, int numerical, char del)
+ninc(FILE *f, int min, int max, int numerical, char del, int prepend)
 {
 	char buffer[BUFFER_SIZE];
-	while (fgets(buffer, sizeof(buffer), f) != NULL) {
+	while (fgets(buffer, sizeof(buffer), f) != NULL)
+	{
 		strtok(buffer, "\n");
-		for (int i = min; i <= max; i++) {
-			if (check_num(numerical, buffer) == 1) {
+		for (int i = min; i <= max; i++)
+		{
+			if (check_num(numerical, buffer) == 1)
+			{
 				if (del == ' ')
 					printf("%s%d\n", buffer, i);
 				else
 					printf("%s%c%d\n", buffer, del, i);
+				if (prepend == 1)
+				{
+					if (del == ' ')
+						printf("%d%s\n", i, buffer);
+					else
+						printf("%d%c%s\n", i, del, buffer);
+				}
 			}
 		}
 	}
@@ -108,52 +121,67 @@ static void
 print_only(FILE *f)
 {
 	char buffer[BUFFER_SIZE];
-	while (fgets(buffer, sizeof(buffer), f) != NULL) {
-		printf("%s",buffer);
+	while (fgets(buffer, sizeof(buffer), f) != NULL)
+	{
+		printf("%s", buffer);
 	}
 }
 
-void
-main(int argc, char * argv[])
+void main(int argc, char *argv[])
 {
 	int min = 1;
 	int max = 10;
 	int d = 0;
 	char del[10];
+	int prepend = 0;
 	int numerical = 0;
 	int index;
 	int c;
 
 	opterr = 0;
 
-	while ((c = getopt(argc, argv, "d:nvh")) != -1 )
-		switch (c) {
+	// Ensure there are enough arguments for MIN and MAX
+	if (argc < 3)
+	{
+		fprintf(stderr, "%s: wrong number of arguments\n", argv[0]);
+		exit(EXIT_FAILURE);
+	}
+
+	// Parse MIN and MAX
+	min = atoi(argv[1]);
+	max = atoi(argv[2]);
+
+	// Adjust argc and argv to skip the first two arguments
+	argc -= 2;
+	argv += 2;
+
+	// Parse options
+	while ((c = getopt(argc, argv, "d:fnvh")) != -1)
+	{
+		switch (c)
+		{
 		case 'v':
 			die(VERSION);
 		case 'h':
 			help(argv[0]);
+		case 'f':
+			prepend = 1;
+			break;
 		case 'd':
-			d=1;
+			d = 1;
 			strncpy(del, optarg, 10);
 			break;
 		case 'n':
-			numerical=1;
+			numerical = 1;
 			break;
 		case '?':
 			exit(EXIT_FAILURE);
 			break;
 		}
-
-
-	if (optind < argc) {
-		min = atoi(argv[optind]);
-		max = atoi(argv[optind+1]);
-	} else {
-		fprintf(stderr, "%s: wrong number of arguments\n", argv[0]);
-		exit(EXIT_FAILURE);
 	}
 
-	if (min > max) {
+	if (min > max)
+	{
 		int temp = max;
 		max = min;
 		min = temp;
@@ -164,14 +192,13 @@ main(int argc, char * argv[])
 	rewind(f);
 	print_only(f);
 	rewind(f);
-	ninc(f, min, max, numerical, ' ');
+	ninc(f, min, max, numerical, ' ', prepend);
 
-	for (int i = 0; i < strlen(del); i++) {
+	for (int i = 0; i < strlen(del); i++)
+	{
 		rewind(f);
-		ninc(f, min, max, numerical, del[i]);
+		ninc(f, min, max, numerical, del[i], prepend);
 	}
 
-
 	exit(EXIT_SUCCESS);
-
 }
